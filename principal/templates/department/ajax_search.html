@@ -1,0 +1,12 @@
+{% load i18n %}
+
+<div class="col-md-6 col-lg-6">
+    <div class="page-header">
+        <h3><i class="fa fa-graduation-cap"></i> {% trans "Departments" %}</h3>
+    </div>
+    {% for department in departments %}
+        <h6><a href="/admin/department/details/{{ department.id }}">{{ department.nombre }} ({{ department.codigo }})</a></h6>
+    {% empty %}
+        {% trans "No departments found." %}
+    {% endfor %}
+</div>

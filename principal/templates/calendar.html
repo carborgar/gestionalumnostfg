@@ -1,0 +1,77 @@
+{% extends 'layout/base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% load endless %}
+{% load extra-tags %}
+
+{% block extrahead %}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="{% static "js/calendar.js" %}"></script>
+    {% get_current_language as LANGUAGE_CODE %}
+    {% if LANGUAGE_CODE == 'es' %}
+        <script src="{% static "js/language/es-ES.js" %}"></script>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <h4>{% trans "Tutorials calendar" %}</h4>
+            <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                    <h5 id="monthName"></h5>
+                    <h6><strong>{% trans "Click on the applicant name to view more details" %}</strong></h6>
+                    <p>{% trans "All dates in UTC timezone." %}</p>
+                </div>
+                <div class="col-xs-12 col-sm-8 text-center">
+                    <div class="btn-group">
+                        <button data-calendar-nav="prev" class="btn btn-primary">
+                            <i class="fa fa-angle-double-left"></i> {% trans "Prev" %}</button>
+                        <button data-calendar-nav="today" class="btn btn-default"> {% trans "Today" %}</button>
+                        <button data-calendar-nav="next" class="btn btn-primary"> {% trans "Next" %}
+                            <i class="fa fa-angle-double-right"></i></button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="calendar" class="table-responsive mt20"></div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        var options = {
+            language: 'es-ES',
+            events_source: '/rest/lecturer/tutorial',
+            view: 'month',
+            tmpl_path: '/static/tmpls/',
+            display_week_numbers: false,
+            weekbox: false,
+            tmpl_cache: false,
+            onAfterEventsLoad: function (events) {
+                if (!events) {
+                    return;
+                }
+            },
+            onAfterViewLoad: function () {
+                $('#monthName').text(this.getTitle());
+            },
+            classes: {
+                months: {
+                    general: 'label'
+                }
+            }
+        };
+
+        var calendar = $("#calendar").calendar(options);
+
+        $('.btn-group button[data-calendar-nav]').each(function () {
+            var $this = $(this);
+            $this.click(function () {
+                calendar.navigate($this.data('calendar-nav'));
+
+            });
+        });
+    </script>
+{% endblock %}

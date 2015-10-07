@@ -1,0 +1,55 @@
+{% extends 'layout/base.html' %}
+{% load i18n %}
+{% load extra-tags %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <h4>{% trans "Import subjects" %}</h4>
+            <p>{% trans "Allows to create subjects and links them to the certifications" %}</p>
+            {% if import_errors_create %}
+                <div class="alert alert-dismissible alert-warning" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <p><i class="fa fa-exclamation-triangle"></i> {% trans "Process was completed successfully, but the following subjects already exist:" %}</p>
+                    <ul>
+                        {% for error in import_errors_create %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            {% if import_errors_link %}
+                <div class="alert alert-dismissible alert-warning" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <p><i class="fa fa-exclamation-triangle"></i> {% trans "Process was completed successfully, but have not been able to link the subjects:" %}</p>
+                    <ul>
+                        {% for error in import_errors_link %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            {% display_errors form %}
+            <form action="/admin/subject/import/" method="post" class="well" data-toggle="validator" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_certifications" class="control-label">{% trans "Certifications" %}:</label>
+                    {{ form.visible_fields.1 }}
+                    <div class="help-block with-errors"></div>
+                </div>
+                <div class="form-group">
+                    <label for="id_file_upload" class="control-label">{% trans "File" %}:</label>
+                    {{ form.visible_fields.0 }}
+                    <div class="help-block with-errors"></div>
+                </div>
+                <div class="alert alert-info" role="alert">
+                    <i class="fa fa-info-circle"></i>
+                    {% trans "The supported files are XML and CSV" %}
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">{% trans "Import" %}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

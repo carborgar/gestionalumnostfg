@@ -1,0 +1,219 @@
+{% extends 'layout/base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% load endless %}
+{% load extra-tags %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+
+            <h4>{{ title }}</h4>
+            {% if reject_form and tutorial_requests %}
+                <button type="button" class="btn btn-warning mb20" data-toggle="modal" data-target="#rejectMultipleModal">{% trans "Cancel tutorial requests" %}</button>
+            {% endif %}
+
+            <div class="row">
+                {% paginate tutorial_requests %}
+                {% for request in tutorial_requests %}
+                    <div class="col-md-6 request-card">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="pull-right text-center">
+                                    <h4><span class="legendToggle status-label {% request_label request %}">{% trans request.get_estado_display %}</span></h4>
+                                    {% if request.estado == 'DE' %}
+                                        <a data-placement="bottom" href="#" data-toggle="popover" data-trigger="focus" title="{% trans "Rejection reason" %}" data-content="{{ request.motivocancelacion }}">{% trans "Why?" %}</a>
+                                    {% endif %}
+                                </div>
+                                <p>
+                                    <a href="{% if perms.principal.profesor %}/profile/view/{{ request.alumno.id }}{% else %}/lecturer/details/{{ request.profesor.id }}{% endif %}"
+                                       data-toggle="tooltip" data-placement="right"
+                                       title="
+                                               {% if perms.principal.profesor %}{% trans "Click to view the profile of the applicant" %}{% else %}{% trans "Click to view the profile of the lecturer" %}{% endif %}">
+                                        <i class="fa fa-user"></i>
+                                        {% if perms.principal.profesor %}{{ request.alumno }} {% else %}
+                                            {{ request.profesor }} {% endif %}
+                                    </a>
+                                </p>
+
+                                <p><i class="fa fa-clock-o"></i> {{ request.fechacita }}</p>
+
+                                <p class="text-justify text-flow"><i class="fa fa-quote-left"></i>
+                                    {{ request.motivo }}
+                                </p>
+                            </div>
+                            <div class="card-action">
+                                {% if form %}
+                                    <div class="btn-group btn-group-sm" role="group">
+                                        <a type="button" class="btn btn-success"
+                                           href="/lecturer/request/accept/{{ request.idcita }}"
+                                           onclick="return confirm('{% trans "By accepting this request, all requests with the same schedule will be automatically canceled. Are you sure?" %}');">{% trans "Accept" %}</a>
+                                        <a id="{{ request.idcita }}" type="button" class="btn btn-danger"
+                                           data-toggle="modal" data-target="#rejectModal"
+                                           onclick="rejectRequest(this);">{% trans "Reject" %}</a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if forloop.counter|divisibleby:2 %}
+                        <div class="clearfix"></div>
+                    {% endif %}
+                {% empty %}
+                    </div><p>
+                    {% if form %}
+                        {% trans "No pending requests found." %}
+                    {% else %}
+                        {% trans "No accepted requests found." %}
+                    {% endif %}
+                    </p>
+                {% endfor %}
+        </div>
+         <div class="text-center">
+                    <nav class="diggy-pagination">
+                        {% show_pages %}
+                    </nav>
+                </div>
+    </div>
+
+    <div class="modal fade" id="legendModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <i class="fa fa-times"></i>
+                    </button>
+                    <h4 class="modal-title">{% trans "Legend" %}</h4>
+                </div>
+                <div class="modal-body">
+                    <h5>{% trans "This is the meaning of the labels that appear next to requests." %}</h5>
+                    <dl>
+                        <dt><h4><span class="label label-primary">{% trans "Pending" %}</span></h4></dt>
+                        <dd>{% trans "It means that the request is pending that the lecturer responds." %}</dd>
+
+                        <dt><h4><span class="label label-success">{% trans "Accepted" %}</span></h4></dt>
+                        <dd>{% trans "It means that the request has been accepted by the teacher." %}</dd>
+
+                        <dt><h4><span class="label label-danger">{% trans "Cancelled" %}</span></h4></dt>
+                        <dd>{% trans "This means that the request has been canceled by the system due to incompatibility of schedule." %}</dd>
+
+                        <dt><h4><span class="label label-danger">{% trans "Rejected" %}</span></h4></dt>
+                        <dd>{% trans "This means that the request has been expressly rejected by the lecturer." %}</dd>
+                    </dl>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">{% trans "Understood" %}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if form %}
+
+        <div class="modal fade" id="rejectModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i
+                                class="fa fa-times"></i></button>
+                        <h4 class="modal-title">{% trans "Reject tutorial request" %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        {% display_errors form %}
+                        <form action="/lecturer/request/reject" method="POST">
+                            {% csrf_token %}
+                            {% for field in form.hidden_fields %}
+                                {{ field }}
+                            {% endfor %}
+                            <label for="{{ form.visible_fields.0.id_for_label }}">{{ form.visible_fields.0.label }}</label>
+                            {{ form.visible_fields.0 }}
+                            <input type="submit" value="Submit" id="tutorialDisableSubmit" class="hidden"/>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Close" %}</button>
+                        <button type="button" id="submitTrigger" class="btn btn-primary">{% trans "Submit" %}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if form.errors %}
+            <script type="text/javascript">
+                $('#rejectModal').modal();
+            </script>
+        {% endif %}
+
+        <script type="text/javascript">
+            $('#submitTrigger').click(function () {
+                $('#tutorialDisableSubmit').click();
+            });
+
+            function rejectRequest(element) {
+                var actual_id = $('#id_request_id').val();
+                var new_id = element.id;
+                if (new_id != actual_id || typeof actual_id == "undefined") {
+                    $('#id_request_id').val(new_id);
+                    $('#id_motivation').val('');
+                    $('#form-errors').remove();
+                }
+
+            }
+        </script>
+    {% endif %}
+
+    {% if reject_form %}
+        <div class="modal fade" id="rejectMultipleModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i
+                                class="fa fa-times"></i></button>
+                        <h4 class="modal-title">{% trans "Reject tutorial requests" %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        {% trans "Use control/command key to select multiple objects at once." %}
+                        {% display_errors reject_form %}
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="{{ reject_form.tutorial_requests.id_for_label }}">{{ reject_form.tutorial_requests.label }}</label>
+                                {{ reject_form.tutorial_requests }}
+                            </div>
+                            <div class="form-group">
+                                <label for="{{ reject_form.motivation.id_for_label }}">{{ reject_form.motivation.label }}</label>
+                                {{ reject_form.motivation }}
+                            </div>
+
+                            <input type="submit" value="Submit" id="tutorialRejectSubmit" class="hidden"/>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Close" %}</button>
+                        <button type="button" id="rejectSubmitTrigger"
+                                class="btn btn-primary">{% trans "Submit" %}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if reject_form.errors %}
+            <script type="text/javascript">
+                $('#rejectMultipleModal').modal();
+            </script>
+        {% endif %}
+
+        <script type="text/javascript">
+            $('#rejectSubmitTrigger').click(function () {
+                $('#tutorialRejectSubmit').click();
+            });
+        </script>
+    {% endif %}
+
+    <script type="text/javascript">
+        $('.legendToggle').click(function () {
+            $('#legendModal').modal();
+        });
+    </script>
+{% endblock %}

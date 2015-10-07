@@ -1,0 +1,88 @@
+{% extends 'layout/base.html' %}
+{% load i18n %}
+{% load extra-tags %}
+{% load staticfiles %}
+{% block extrahead %}
+    <script src="{% static "js/jquery.cascadingdropdown.min.js" %}"></script>
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <h4>{% trans "Request for an appointment" %}</h4>
+            {% display_errors form %}
+            <form class="form-horizontal" data-toggle="validator" id="seekForm">
+                <div id="dropdowns">
+                    <div class="form-group">
+                        <label for="id_subject" class="col-sm-1 control-label">{% trans "Subject" %}</label>
+
+                        <div class="col-sm-6 col-lg-4 col-xs-12">
+                            {{ form.visible_fields.0 }}
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_lecturer_id" class="col-sm-1 control-label">{% trans "Lecturer" %}</label>
+
+                        <div class="col-sm-6 col-lg-4 col-xs-12">
+                            {{ form.visible_fields.1 }}
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-xs-12 col-sm-1">
+                        <button type="submit" class="btn btn-primary">{% trans "View tutorials" %}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $('#dropdowns').cascadingDropdown({
+            selectBoxes: [
+                {
+                    selector: '#id_subject',
+                    source: function (request, response) {
+                        $.getJSON('/rest/subject/all', request, function (data) {
+                            var json = JSON.parse(data);
+                            var selectOption = {% firstof form.visible_fields.0.value -1 %}
+                                    response($.map(json, function (item, index) {
+                                        return {
+                                            value: item.id,
+                                            label: item.name,
+                                            selected: selectOption > 0 ? item.id == selectOption : index == 0
+                                        };
+                                    }));
+                        });
+                    }
+                },
+                {
+                    selector: '#id_lecturer_id',
+                    requires: ['#id_subject'],
+                    source: function (request, response) {
+                        var selected = $("#id_subject option:selected").val();
+                        var selectOption = {% firstof form.visible_fields.1.value -1 %}
+                                $.getJSON('/rest/lecturer/' + selected, request, function (data) {
+                                    var json = JSON.parse(data);
+                                    response($.map(json, function (item, index) {
+                                        return {
+                                            value: item.id,
+                                            label: item.name,
+                                            selected: selectOption > 0 ? item.id == selectOption : index == 0
+                                        };
+                                    }));
+                                });
+                    }
+                }
+            ]
+        });
+
+        $('#seekForm').submit(function(e){
+            e.preventDefault();
+            var url = "/student/tutorial/seek/" + $('#id_lecturer_id').val();
+            window.location.href = url;
+        });
+    </script>
+{% endblock %}

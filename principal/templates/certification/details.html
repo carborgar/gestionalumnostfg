@@ -1,0 +1,64 @@
+{% extends 'layout/base.html' %}
+{% load i18n %}
+{% load endless %}
+{% block content %}
+
+    <div class="row">
+        <h4>{% trans "Certification details" %}</h4>
+
+        <p>{% trans "It displays all the information a certification" %}</p>
+
+        <div class="col-xs-12 col-sm-6">
+            <div class="page-header">
+                <h3><i class="fa fa-graduation-cap"></i> {% trans "Certification data" %}</h3>
+            </div>
+            <div>
+                <dl class="dl-horizontal custom-dl">
+                    <dt>{% trans "Name" %}:</dt>
+                    <dd>{{ certification.nombre }}</dd>
+                    <dt>{% trans "Code" %}:</dt>
+                    <dd>{{ certification.codigo }}</dd>
+                </dl>
+            </div>
+            <a href="/admin/certification/delete/{{ certification.id }}" type="button" class="btn btn-danger"
+               onclick="return confirm('{% trans "This action is irreversible. Are you sure you want to delete this certification?" %}')"><i
+                    class="fa fa-trash-o"></i> {% trans "Delete" %}</a>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <div class="page-header">
+                <h3><i class="fa fa-book"></i> {% trans "Subjects" %}</h3>
+            </div>
+            <div>
+                {% paginate subjects %}
+                <ul class="list-unstyled">
+                    {% for subject in subjects %}
+                        <li>
+                            <a href="/subject/details/{{ subject.id }}" data-toggle="tooltip" data-placement="bottom"
+                               title="{% trans "Subject details" %}">{{ subject.nombre }}</a>
+                            <a href="/admin/subject/unlink/certification/{{ subject.id }}/{{ certification.id }}"
+                               data-toggle="tooltip" data-placement="bottom" title="{% trans "Unlink subject" %}"
+                               class="unlink_subject"><i class="fa fa-chain-broken"></i></a>
+                        </li>
+                    {% empty %}
+                        <li>{% trans "No subjects found." %}</li>
+                    {% endfor %}
+                </ul>
+                <div class="text-center">
+                    <nav class="diggy-pagination">
+                        {% show_pages %}
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="application/javascript">
+        $('.unlink_subject').on('click', function () {
+            return confirm('{% trans "Are you sure you want to unlink subject?" %}');
+        });
+    </script>
+
+{% endblock %}
+
+
+

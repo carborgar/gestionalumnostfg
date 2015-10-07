@@ -1,0 +1,33 @@
+{% load i18n %}
+{% load endless %}
+
+<div class="col-md-6 col-lg-6">
+    <div class="page-header">
+        <h3><i class="fa fa-users"></i> {% trans "Students" %}</h3>
+    </div>
+    {% for user in students %}
+        {% if subject_id %}
+            <h6><a href="/admin/subject/link/user/{{ subject_id }}/{{ user.id }}" class="link_user">{{ user.last_name }}, {{ user.first_name }} ({{ user.username }})</a></h6>
+        {% else %}
+            <h6><a href="/admin/user/details/{{ user.id }}">{{ user.last_name }}, {{ user.first_name }} ({{ user.username }})</a></h6>
+        {% endif %}
+    {% empty %}
+        {% trans "No students found." %}
+    {% endfor %}
+</div>
+
+<div class="col-md-6 col-lg-6">
+    <div class="page-header">
+        <h3><i class="fa fa-users"></i> {% trans "Lecturers" %}</h3>
+    </div>
+    {% paginate lecturers with "/admin/user/list" %}
+    {% for user in lecturers %}
+        {% if subject_id %}
+            <h6><a href="/admin/subject/link/user/{{ subject_id }}/{{ user.id }}">{{ user.last_name }}, {{ user.first_name }} ({{ user.username }})</a></h6>
+        {% else %}
+            <h6><a href="/admin/user/details/{{ user.id }}">{{ user.last_name }}, {{ user.first_name }} ({{ user.username }})</a></h6>
+        {% endif %}
+    {% empty %}
+        {% trans "No lecturers found." %}
+    {% endfor %}
+</div>

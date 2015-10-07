@@ -1,0 +1,181 @@
+{% extends 'layout/base.html' %}
+{% load i18n %}
+{% load extra-tags %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <h4>{{ student }} </h4>
+            <button class="btn btn-success hidden-print" onclick="window.print();return false;"><i
+                    class="fa fa-print fa-lg"></i> {% trans "Print this page" %}</button>
+            {% if student.ficha %}
+
+                <div class="mt20">
+                    <div class="col-sm-4 col-xs-12 user-details hidden-print">
+                        <div class="list-group list-inline">
+                            <a href="#data" data-toggle="tab" class="list-group-item active" id="data-toggle">
+                                <i class="fa fa-user"></i> {% trans "Student data" %}
+                            </a>
+                            <a href="#residente" data-toggle="tab" class="list-group-item" id="residence-toggle">
+                                <i class="fa fa-home"></i> {% trans "Residence address" %}
+                            </a>
+                            <a href="#studies_residence" data-toggle="tab" class="list-group-item" id="studying-toggle">
+                                <i class="fa fa-book"></i> {% trans "Address while studying" %}
+                            </a>
+                        </div>
+                        <p>{% trans "Updated" %}: {{ student.ficha.fecha_actualizacion }}</p>
+                    </div>
+
+                    <div class="col-sm-8 col-xs-12">
+                        <div class="tab-content">
+                            <div id="data" class="tab-pane active">
+                                <h4 class="subheader">{% trans "Student data" %}</h4>
+
+                                <div class="col-xs-12 col-sm-4 text-center no-padding-column">
+                                    <img class="img-responsive img-thumbnail" src="/{{ student.ficha.foto }}"
+                                         alt="{{ student.first_name }}"/>
+                                </div>
+                                <div class="col-xs-12 col-sm-8">
+                                    <dl class="dl-horizontal custom-dl">
+                                        <dt>{% trans "ID" %}:</dt>
+                                        <dd>{{ student.dni }}</dd>
+                                        <dt>{% trans "Name" %}:</dt>
+                                        <dd>{{ student.first_name }}</dd>
+                                        <dt>{% trans "Surname" %}:</dt>
+                                        <dd>{{ student.last_name }}</dd>
+                                        <dt>{% trans "Email" %}:</dt>
+                                        <dd>{{ student.email }}</dd>
+                                        <dt>{% trans "Telephone" %}:</dt>
+                                        <dd>{{ student.ficha.telefono }}</dd>
+                                        <dt>{% trans "Mobile phone" %}:</dt>
+                                        <dd>{{ student.ficha.movil }}</dd>
+                                    </dl>
+                                </div>
+
+
+                            </div>
+                            <div id="residente" class="tab-pane">
+                                <h4 class="subheader">{% trans "Residence address" %}</h4>
+                                <dl class="dl-horizontal custom-dl">
+                                    <dt>{% trans "Address" %}:</dt>
+                                    <dd>{{ student.ficha.direccion_residencia.direccion }}</dd>
+                                    <dt>{% trans "Location" %}:</dt>
+                                    <dd>{{ student.ficha.direccion_residencia.localizacion }}</dd>
+                                    <dt>{% trans "Postal code" %}:</dt>
+                                    <dd>{{ student.ficha.direccion_residencia.codigo_postal }}</dd>
+                                    <dt>{% trans "Province" %}:</dt>
+                                    <dd>{{ student.ficha.direccion_residencia.provincia }}</dd>
+                                    <dt>{% trans "Country" %}:</dt>
+                                    <dd>{{ student.ficha.direccion_residencia.pais }}</dd>
+                                </dl>
+                            </div>
+                            <div id="studies_residence" class="tab-pane">
+                                <h4 class="subheader">{% trans "Address while studying" %}</h4>
+                                <dl class="dl-horizontal custom-dl">
+                                    <dt>{% trans "Address" %}:</dt>
+                                    <dd>{{ student.ficha.direccion_estudios.direccion }}</dd>
+                                    <dt>{% trans "Location" %}:</dt>
+                                    <dd>{{ student.ficha.direccion_estudios.localizacion }}</dd>
+                                    <dt>{% trans "Postal code" %}:</dt>
+                                    <dd>{{ student.ficha.direccion_estudios.codigo_postal }}</dd>
+                                    <dt>{% trans "Province" %}:</dt>
+                                    <dd>{{ student.ficha.direccion_estudios.provincia }}</dd>
+                                    <dt>{% trans "Country" %}:</dt>
+                                    <dd>{{ student.ficha.direccion_estudios.pais }}</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            {% else %}
+                <p class="text-warning">
+                    <i class="fa fa-exclamation-triangle"></i> {% trans "No student data available." %}</p>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if perms.principal.profesor %}
+        <div class="row hidden-print">
+            <div class="col-xs-12">
+                <div class="page-header">
+                    <h3><i class="fa fa-comment"></i> {% trans "Remarks" %}
+                        <small>
+                            <a href="#" data-toggle="modal" data-target="#remarkModal">{% trans "Add remark" %}</a>
+                        </small>
+                    </h3>
+                </div>
+                {% for subject in student.asignaturas.all %}
+                    {% if subject in lecturer_subjects %}
+                        <div class="col-xs-12 col-sm-6">
+                            <h5>{{ subject.nombre }}</h5>
+                            <dl>
+                                {% for remark in student.observacion_set.all %}
+                                    {% if remark.asignatura == subject and remark.profesor.id == user.id %}
+                                        <dt>{{ remark.fecha }}</dt>
+                                        <dd>{{ remark.descripcion }}</dd>
+                                    {% endif %}
+                                {% endfor %}
+                            </dl>
+                        </div>
+
+                        {% if forloop.counter|divisibleby:2 %}
+                            <div class="clearfix"></div>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="modal fade" id="remarkModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i
+                                class="fa fa-times"></i></button>
+                        <h4 class="modal-title">{% trans "Add remark to" %} {{ student.first_name }}</h4>
+                    </div>
+                    <div class="modal-body">
+                        {% display_errors form %}
+                        <form method="post">
+                            {% csrf_token %}
+                            {% for hidden in form.hidden_fields %}
+                                {{ hidden }}
+                            {% endfor %}
+                            {% for field in form.visible_fields %}
+                                <div class="form-group">
+                                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                    {{ field }}
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            {% endfor %}
+
+                            <input type="submit" id="submitButton" value="Submit" class="hidden"/>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Close" %}</button>
+                        <button type="button" id="submitTrigger"
+                                class="btn btn-primary">{% trans "Save remark" %}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endif %}
+
+    <script type="text/javascript">
+        $('.list-group-item').click(function (e) {
+            var clickedID = e.target.id;
+            $('a').removeClass('active');
+            $('#' + clickedID).addClass('active');
+        });
+
+        $('#submitTrigger').click(function () {
+            $('#submitButton').trigger('click');
+        });
+        {% if form.errors %}
+            $('#remarkModal').modal();
+        {% endif %}
+    </script>
+{% endblock %}

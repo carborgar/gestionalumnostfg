@@ -1,0 +1,49 @@
+{% load i18n %}
+
+
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <i class="fa fa-graduation-cap"></i> {% trans "Certification" %}
+        <span class="fa fa-chevron-down"></span>
+    </a>
+    <ul class="dropdown-menu">
+        <li><a href="/admin/certification/create"><i class="fa fa-plus"></i> {% trans "New certification" %}</a></li>
+        <li><a href="/admin/certification/list"><i class="fa fa-list"></i> {% trans "Certification list " %}</a></li>
+    </ul>
+</li>
+
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <i class="fa fa-suitcase"></i> {% trans "Departament" %}
+        <span class="fa fa-chevron-down"></span>
+    </a>
+    <ul class="dropdown-menu">
+        <li><a href="/admin/department/edit"><i class="fa fa-plus"></i> {% trans "New departament" %}</a></li>
+        <li><a href="/admin/department/list"><i class="fa fa-list"></i> {% trans "Departments list" %}</a></li>
+        <li><a href="/admin/department/import"><i class="fa fa-download"></i> {% trans "Import departaments" %}</a></li>
+    </ul>
+</li>
+
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <i class="fa fa-users"></i> {% trans "User" %}
+        <span class="fa fa-chevron-down"></span>
+    </a>
+    <ul class="dropdown-menu">
+        <li><a href="/admin/user/create"><i class="fa fa-plus"></i> {% trans "New user" %}</a></li>
+        <li><a href="/admin/user/list"><i class="fa fa-list"></i> {% trans "User list" %}</a></li>
+        <li><a href="/admin/user/import"><i class="fa fa-download"></i> {% trans "Import users" %}</a></li>
+    </ul>
+</li>
+
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <i class="fa fa-book"></i> {% trans "Subject" %}
+        <span class="fa fa-chevron-down"></span>
+    </a>
+    <ul class="dropdown-menu">
+        <li><a href="/admin/subject/create"><i class="fa fa-plus"></i> {% trans "New subject" %}</a></li>
+        <li><a href="/subject/list"><i class="fa fa-list"></i> {% trans "Subjects list " %}</a></li>
+        <li><a href="/admin/subject/import"><i class="fa fa-download"></i> {% trans "Import subjects" %}</a></li>
+    </ul>
+</li>

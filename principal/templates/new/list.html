@@ -1,0 +1,141 @@
+{% extends 'layout/base.html' %}
+{% load i18n %}
+{% load extra-tags %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <h4>{% trans "News" %}</h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-3 mt20">
+            <label for="subjects_filter">{% trans "Select subject" %}</label>
+            <select class="form-control" id="subjects_filter">
+                {% for subject in subjects %}
+                    <option href="#news{{ subject.id }}"
+                            data-toggle="tab">{{ subject.nombre|abbr }} ({{ subject.nombre|truncatechars:25 }})</option>
+                {% endfor %}
+            </select>
+
+            {% if perms.principal.profesor %}
+                <div class="text-center mb20 mt20">
+                    <button onclick="addNew();" type="button"
+                            class="btn btn-primary btn-block">{% trans "Add new" %}</button>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="col-xs-12 col-sm-9 mt20">
+            <div class="tab-content">
+                {% for subject in subjects %}
+                    <div class="row tab-pane fade {% if forloop.first %}in active{% endif %}" id="news{{ subject.id }}">
+                        {% for new in subject.noticia_set.all %}
+                            <div class="col-xs-12 col-sm-6">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">{{ new.titulo }}</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        {{ new.texto|urlize }}
+                                    </div>
+                                    <div class="panel-footer">
+                                        {% trans "Published" %}: {{ new.fecha_inicio }}
+                                        {% if new.fecha_modificacion != new.fecha_inmicio %} {% trans "Mod.:" %}
+                                            {{ new.fecha_modificacion }}{% endif %}
+                                        {% if perms.principal.profesor and user.id == new.profesor.id %}
+                                            <div class="pull-right">
+                                                <a href="/news/{{ new.id }}/ed" href="#">
+                                                    <i class="fa fa-pencil"></i>
+                                                </a>
+                                                <a href="/news/{{ new.id }}/rm"
+                                                   onclick="return confirm('{% trans "This action is unrecoverable. Are you sure you want to delete this new?" %}')">
+                                                    <i class="fa fa-times"></i></a>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            {% if forloop.counter|divisibleby:2 %}
+                                <div class="clearfix"></div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+    {% if perms.principal.profesor %}
+        <div class="modal fade" id="newModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i
+                                class="fa fa-times"></i></button>
+                        <h4 id="modalHead" class="modal-title">
+                            {% if not form.new_id.value %}
+                                {% trans "Publish new" %}
+                            {% else %}
+                                {% trans "Edit new" %}
+                            {% endif %}
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        {% display_errors form %}
+                        <form method="POST" action="/new/save">
+                            {% csrf_token %}
+                            {% for field in form.hidden_fields %}
+                                {{ field }}
+                            {% endfor %}
+                            <label for="{{ form.subject.id_for_label }}">{{ form.subject.label }}</label>
+                            {{ form.subject }}
+                            <label for="{{ form.title.id_for_label }}">{{ form.title.label }}</label>
+                            {{ form.title }}
+                            <label for="{{ form.body.id_for_label }}">{{ form.body.label }}</label>
+                            {{ form.body }}
+
+                            <input type="submit" value="Submit" id="newSubmit" class="hidden"/>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Close" %}</button>
+                        <button type="button" id="submitTrigger" class="btn btn-primary">{% trans "Submit" %}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            $('#submitTrigger').click(function () {
+                $('#newSubmit').click();
+            });
+
+            function addNew() {
+                var actual_id = $('#id_new_id').val();
+                if (actual_id) {
+                    $('#id_new_id').val('');
+                    $('#id_subject').val('');
+                    $('#id_title').val('');
+                    $('#id_body').val('');
+                    $('#form-errors').remove();
+                    $('#modalHead').text('{% trans "Publish new" %}')
+                }
+                $('#newModal').modal();
+            }
+
+            {% if form %}
+                {% if form.new_id.value or form.errors %}
+                    $('#newModal').modal();
+                {% endif %}
+            {% endif %}
+        </script>
+    {% endif %}
+
+    <script type="text/javascript">
+        $("#subjects_filter").val($("#subjects_filter option:first").val());
+    </script>
+{% endblock %}

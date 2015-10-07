@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load staticfiles %}
+    {% load i18n %}
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{% trans "Students management" %}</title>
+    <link rel="icon" href="{% static "img/favicon.ico" %}" type="image/x-icon"/>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.5/paper/bootstrap.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.1/toastr.min.css"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/custom.css" %}">
+    <link rel="stylesheet" href="{% static "css/jquery.cookiebar.css" %}">
+
+    <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.8.1/validator.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.1/toastr.min.js"></script>
+
+
+    <script src="{% static "js/main.js" %}"></script>
+    <script src="{% static "js/jquery.cookiebar.js" %}"></script>
+
+    {% block extrahead %}{% endblock %}
+</head>
+<body>
+
+{% include "layout/header.html" %}
+
+<main id="content" class="container container-fixed-nav">
+    {% block content %} {% endblock %}
+</main>
+
+{% include "layout/footer.html" %}
+
+<div class="language-switch hidden-print">
+    <form action="{% url 'set_language' %}" method="post" id="langForm">
+        {% csrf_token %}
+        <input name="next" type="hidden" value="{{ request.path }}"/>
+        <select name="language" class="form-control" id="langSel">
+            {% get_current_language as LANGUAGE_CODE %}
+            {% get_available_languages as LANGUAGES %}
+            {% get_language_info_list for LANGUAGES as languages %}
+            {% for language in languages %}
+                <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %}
+                        selected="selected"{% endif %}>
+                    {{ language.name_local }} ({{ language.code }})
+                </option>
+            {% endfor %}
+        </select>
+    </form>
+</div>
+
+<script type="text/javascript">
+    $('#langSel').change(function () {
+        $('#langForm').submit();
+    });
+
+    $.cookieBar({
+        message: '{% trans "We use cookies to track usage and preferences." %}',
+        policyURL: '/cookies_policy',
+        policyText: '{% trans "Cookies policy" %}',
+        bottom: true,
+        fixed: true,
+        acceptButton: true,
+        acceptText: '{% trans "I accept" %}',
+        policyButton: true,
+    });
+</script>
+
+{% if messages %}
+    <script type="text/javascript">
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": true,
+            "positionClass": "toast-bottom-left",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "7000",
+            "extendedTimeOut": "2000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        {% for message in messages %}
+            toastr.{{ message.tags }}('{{ message }}');
+        {% endfor%}
+    </script>
+{% endif %}
+</body>
+
+</html>

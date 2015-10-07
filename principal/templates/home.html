@@ -1,0 +1,13 @@
+{% extends 'layout/base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12 mb20">
+            <h4>{% trans "Welcome" %}, {% firstof user.first_name "Administrator" %}</h4>
+            <p>{% trans "Welcome to students management website of University of Seville. On the top menu you can access to all your resources." %}</p>
+            <img src="{% static "img/us.jpg" %}" class="img-responsive home-img" alt="US">
+        </div>
+    </div>
+{% endblock %}

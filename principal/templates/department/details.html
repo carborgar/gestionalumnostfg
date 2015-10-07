@@ -1,0 +1,56 @@
+{% extends 'layout/base.html' %}
+{% load i18n %}
+{% load endless %}
+{% block content %}
+
+    <div class="row">
+        <h4>{% trans "Department details" %}</h4>
+
+        <p>{% trans "It displays all the information a department" %}</p>
+
+        <div class="col-xs-12 col-sm-6">
+            <div class="page-header">
+                <h3><i class="fa fa-suitcase"></i> {% trans "Department data" %}</h3>
+            </div>
+            <div>
+                <dl class="dl-horizontal custom-dl">
+                    <dt>{% trans "Name" %}:</dt>
+                    <dd>{{ department.nombre }}</dd>
+                    <dt>{% trans "Code" %}:</dt>
+                    <dd>{{ department.codigo }}</dd>
+                    <dt>{% trans "Web" %}:</dt>
+                    <dd>{{ department.web|urlize }}</dd>
+                </dl>
+            </div>
+            <a href="/admin/department/edit/{{ department.id }}" type="button" class="btn btn-info"><i
+                    class="fa fa-pencil"></i> {% trans "Edit" %}</a>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <div class="page-header">
+                <h3><i class="fa fa-book"></i> {% trans "Subjects" %}</h3>
+            </div>
+            <div>
+                {% paginate subjects %}
+                <ul class="list-unstyled">
+                    {% for subject in subjects %}
+                        <li>
+                            <a href="/subject/details/{{ subject.id }}" data-toggle="tooltip" data-placement="bottom"
+                               title="{% trans "Subject details" %}">{{ subject.nombre }}</a>
+                        </li>
+                    {% empty %}
+                        <li>{% trans "No subjects found." %}</li>
+                    {% endfor %}
+                </ul>
+                <div class="text-center">
+                    <nav class="diggy-pagination">
+                        {% show_pages %}
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+

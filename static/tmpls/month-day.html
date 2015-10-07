@@ -1,0 +1,17 @@
+<td class="<%= cls %>">
+    <div class="cal-month-day col-xs-12 no-padding-column">
+        <div class="col-xs-12 text-center col-sm-2 no-padding-column">
+            <p><%= day %></p></div>
+        <% if (events.length > 0) { %>
+        <div class="col-xs-12 col-sm-10 no-padding-column">
+            <ul class="list-unstyled mb0 calendar-event-list">
+                <% _.each(events, function(event) { %>
+                <li><a tabindex="0" onclick="alert('<%= event.motivation %>');" data-toggle="popover"
+                       data-trigger="focus" role="button" title="<%= event.title %>, '<%= event.motivation %>'"><%=
+                    event.short_title %></a></li>
+                <% }); %>
+            </ul>
+        </div>
+        <% } %>
+    </div>
+</td>

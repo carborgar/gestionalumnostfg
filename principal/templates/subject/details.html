@@ -1,0 +1,134 @@
+{% extends 'layout/base.html' %}
+{% load i18n %}
+{% load endless %}
+{% block content %}
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-6">
+            <div class="page-header">
+                <h3><i class="fa fa-book"></i> {% trans "Subject data" %}</h3>
+            </div>
+            <div>
+                <dl class="dl-horizontal custom-dl">
+                    <dt>{% trans "Name" %}:</dt>
+                    <dd>{{ subject.nombre }}</dd>
+                    <dt>{% trans "Code" %}:</dt>
+                    <dd>{{ subject.codigo }}</dd>
+                    {% if subject.web %}
+                        <dt>{% trans "Web" %}:</dt>
+                        <dd>{{ subject.web|urlize }}</dd>
+                    {% endif %}
+                    <dt>{% trans "Course" %}:</dt>
+                    <dd>{{ subject.curso }}</dd>
+                    <dt>{% trans "Semester" %}:</dt>
+                    <dd>{{ subject.cuatrimestre }}</dd>
+                    <dt>{% trans "Credits" %}:</dt>
+                    <dd>{{ subject.nombre }}</dd>
+                    <dt>{% trans "Duration" %}:</dt>
+                    <dd>{{ subject.get_duracion_display }}</dd>
+                    <dt>{% trans "Type" %}:</dt>
+                    <dd>{{ subject.get_tipo_asignatura_display }}</dd>
+                    <dt>{% trans "Department" %}:</dt>
+                    <dd>{{ subject.departamento }}</dd>
+                </dl>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-6">
+            <div class="page-header">
+                <h3><i class="fa fa-users"></i> {% trans "Lecturers" %}</h3>
+            </div>
+            <div>
+                {% paginate subject_lecturers using "lecturers" %}
+                <ul class="list-unstyled">
+                    {% for lecturer_subject in subject_lecturers %}
+                        {% if perms.principal.administrator %}
+                            <li><a href="/admin/user/details/{{ lecturer_subject.profesor.id }}">{{ lecturer_subject }}</a>
+                        {% else %}
+                            <li><a href="/lecturer/details/{{ lecturer_subject.profesor.id }}">{{ lecturer_subject }}</a>
+                        {% endif %}
+                        </li>
+                    {% empty %}
+                        <li>{% trans "No lecturers found." %}</li>
+                    {% endfor %}
+                </ul>
+                 <div class="text-center">
+                    <nav class="diggy-pagination">
+                        {% show_pages %}
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6">
+            <div class="page-header">
+                <h3><i class="fa fa-newspaper-o"></i> {% trans "News" %}</h3>
+            </div>
+            <div>
+                {% paginate news using "news" %}
+                <ul class="list-unstyled">
+                    {% for new in news %}
+                        <li class="mt10">
+                            <p><strong>{{ new.titulo|urlize }}</strong></p>
+                            {{ new.texto|urlize }}
+                        </li>
+                    {% empty %}
+                        <li>{% trans "No news found." %}</li>
+                    {% endfor %}
+                </ul>
+                 <div class="text-center">
+                    <nav class="diggy-pagination">
+                        {% show_pages %}
+                    </nav>
+                </div>
+            </div>
+        </div>
+        {% if  perms.principal.administrator %}
+            <div class="col-xs-12 col-sm-6">
+                <div class="page-header">
+                    <h3><i class="fa fa-graduation-cap"></i> {% trans "Certifications" %}
+                        <small><a href="/admin/subject/link/{{ subject.id }}" data-toggle="tooltip" data-placement="bottom"
+                       title="{% trans "Link or unlink certifications" %}"><i class="fa fa-pencil"></i></a></small>
+                    </h3>
+                </div>
+                <div>
+                    {% paginate certifications using "certs" %}
+                    <ul class="list-unstyled">
+                        {% for cert in certifications %}
+                            <li><a href="/admin/certification/details/{{ cert.id }}">{{ cert.nombre }}</a></li>
+                        {% empty %}
+                            <li>{% trans "No certifications found." %}</li>
+                        {% endfor %}
+                    </ul>
+                     <div class="text-center">
+                    <nav class="diggy-pagination">
+                        {% show_pages %}
+                    </nav>
+                </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    {% if  perms.principal.administrator %}
+        <div class="row mb20">
+            <div class="col-xs-12">
+                <a href="/admin/subject/link/user/{{ subject.id }}" type="button" class="btn btn-primary">
+                    <i class="fa fa-link"></i> {% trans "Link users" %}
+                </a>
+                <a href="/admin/subject/import/link/{{ subject.id }}" type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="{% trans "Import users" %}">
+                    <i class="fa fa-download"></i> {% trans "Import users" %}
+                </a>
+
+                <a href="/admin/subject/delete/{{ subject.id }}" type="button" class="btn btn-danger" onclick="return confirm('{% trans "This action is irreversible. Are you sure you want to delete this subject?" %}')">
+                    <i class="fa fa-trash-o"></i> {% trans "Delete" %}
+                </a>
+                <a href="/admin/subject/delete/users/{{ subject.id }}" type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="{% trans "Unlink all lecturers and students." %}" onclick="return confirm('{% trans "This action is irreversible. Are you sure you want to unlink all lecturers and students from this subject?" %}')">
+                    <i class="fa fa-chain-broken"></i> {% trans "Unlink users" %}
+                </a>
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}

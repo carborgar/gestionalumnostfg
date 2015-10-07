@@ -1,0 +1,262 @@
+{% extends 'layout/base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% load extra-tags %}
+
+{% block extrahead %}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.14.30/css/bootstrap-datetimepicker.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment-with-locales.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.14.30/js/bootstrap-datetimepicker.min.js"></script>
+{% endblock %}
+{% block content %}
+    {% if lecturer.id == request.user.id %}
+        <div class="modal fade" id="tutorialModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i
+                                class="fa fa-times"></i></button>
+                        <h4 class="modal-title">
+                            {% if form.hidden_fields.0.value %}
+                                {% trans "Edit tutorial" %}
+                            {% else %}
+                                {% trans "Create new tutorial" %}
+                            {% endif %}
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        {% display_errors form %}
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ form.hidden_fields.0 }}
+                            <div class="form-group"><label
+                                    for="{{ form.visible_fields.2.id_for_label }}">{{ form.visible_fields.2.label }}</label>{{ form.visible_fields.2 }}
+                            </div>
+                            <div class="form-group"><label
+                                    for="{{ form.visible_fields.0.id_for_label }}">{{ form.visible_fields.0.label }}</label>{{ form.visible_fields.0 }}
+                            </div>
+                            <div class="form-group"><label
+                                    for="{{ form.visible_fields.1.id_for_label }}">{{ form.visible_fields.1.label }}</label>{{ form.visible_fields.1 }}
+                            </div>
+
+                            <input type="submit" value="Submit" id="tutorialSubmit" class="hidden"/>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Close" %}</button>
+                        <button type="button" id="tutorialTrigger" class="btn btn-primary">{% trans "Submit" %}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="tutorialDisableModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i
+                                class="fa fa-times"></i></button>
+                        <h4 class="modal-title">{% trans "Disable tutorials" %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/lecturer/tutorial/disable" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{ request.path }}" name="return_url"/>
+
+                            <div class="form-group">
+                                <label for="disableMotivation">{% trans "Desactivation reason" %}</label>
+                            <textarea name="motivation" id="disableMotivation" class="form-control textarea-no-resize"
+                                      rows="4"
+                                      required></textarea>
+                            </div>
+                            <input type="submit" value="Submit" id="tutorialDisableSubmit" class="hidden"/>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Cancel" %}</button>
+                        <button type="button" id="tutorialDisableTrigger"
+                                class="btn btn-primary">{% trans "Disable tutorials" %}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-6">
+            <div class="page-header">
+                <h3><i class="fa fa-user"></i> {% trans "Personal data" %}</h3>
+            </div>
+            <div>
+                <dl class="dl-horizontal custom-dl">
+                    <dt>{% trans "Name" %}:</dt>
+                    <dd>{{ lecturer }}</dd>
+                    <dt>{% trans "Category" %}:</dt>
+                    <dd>{{ lecturer.categoria }}</dd>
+                </dl>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-6">
+            <div class="page-header">
+                <h3><i class="fa fa-phone"></i> {% trans "Contact data" %}</h3>
+            </div>
+            <div>
+                <dl class="dl-horizontal custom-dl">
+                    <dt>{% trans "Telephone" %}:</dt>
+                    <dd>{{ lecturer.telefono }}</dd>
+                    <dt>{% trans "Office" %}:</dt>
+                    <dd>{{ lecturer.despacho }}</dd>
+                    <dt>{% trans "Web" %}:</dt>
+                    <dd>{{ lecturer.web|urlize }}</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="page-header">
+                <div class="settings">
+                    <div class="row">
+                        <div class="question">
+                            <h3><i class="fa fa-calendar"></i> {% trans "Tutorials" %}
+                                {% if perms.principal.alumno %}
+                                    <small><a
+                                            href="/student/tutorial/seek/{{ lecturer.id }}">{% trans "Request appointment" %}</a>
+                                    </small>
+                                {% endif %}
+                            </h3>
+                        </div>
+
+                        {% if lecturer.id == request.user.id %}
+                            <div class="switch">
+                                <form action="/lecturer/tutorial/enable" method="POST" id="enableTutorialsForm">
+                                    {% csrf_token %}
+                                    <input type="hidden" value="{{ request.path }}" name="return_url"/>
+                                    <input id="cmn-toggle-4" class="cmn-toggle cmn-toggle-round-flat" type="checkbox"
+                                           {% if lecturer.tutoriaactivada %}checked="checked"{% endif %}>
+                                    <label for="cmn-toggle-4"></label>
+                                </form>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+
+            </div>
+
+            {% if lecturer.tutoriaactivada %}
+                {% if lecturer.id == request.user.id %}
+                    <div id="tutorialContent">
+                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#tutorialModal">
+
+                        {% if form.hidden_fields.0.value %}
+                            {% trans "Edit selected tutorial" %}
+                        {% else %}
+                            {% trans "Add tutorial range" %}
+                        {% endif %}</button>
+                {% endif %}
+
+            <div class="table-responsive mt20">
+                <table class="table ">
+                    <thead>
+                    <tr>
+                        <th class="day1">{% trans "Monday" %}</th>
+                        <th class="day2">{% trans "Tuesday" %}</th>
+                        <th class="day3">{% trans "Wednesday" %}</th>
+                        <th class="day4">{% trans "Thursday" %}</th>
+                        <th class="day5">{% trans "Friday" %}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        {% for i in "12345" %}
+                            <td class="day{{ i }}">
+                                {% for tutorial in lecturer.tutoria_set.filter.all %}
+                                    {% if tutorial.dia == i|add:"0" %}
+                                        {% ifequal  user.id lecturer.id %}
+                                            <a href="/lecturer/tutorial/delete/{{ tutorial.id }}"
+                                               onclick="return confirm('{% trans "Are you sure that you want to remove this entry?" %}');">
+                                                <i class="fa fa-times"></i></a>
+                                            <a href="/lecturer/tutorial/edit/{{ tutorial.id }}">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                        {% endifequal %}
+                                        <span>
+                                                {% trans "From" %} {{ tutorial.horainicio|time:"H:i" }}
+                                                {% trans "to" %} {{ tutorial.horafin|time:"H:i" }}
+                                            </span><br>
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            </div>
+            {% else %}
+                <p>{% trans "Tutorials are disabled. Here is the reason: " %}</p>
+                <p>{% firstof lecturer.motivotutorias trans "No reason was specified." %}</p>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if form.errors or form.hidden_fields.0.value %}
+        <script type="text/javascript">
+            $('#tutorialModal').modal();
+        </script>
+    {% endif %}
+
+
+
+    <script type="text/javascript">
+        $("#cmn-toggle-4").click(function () {
+            if ($(this).is(':checked')) {
+                if (confirm('{% trans "Are you sure you want to enable tutorials?" %}')) {
+                    $('#enableTutorialsForm').submit();
+                } else {
+                    setTutorialSwitchOff();
+                }
+            } else {
+                if (confirm('{% trans "Are you sure you want to disable tutorials?" %}')) {
+                    $('#tutorialDisableModal').modal();
+                } else {
+                    setTutorialSwitchOn();
+                }
+            }
+        });
+
+        function setTutorialSwitchOff() {
+            $("#cmn-toggle-4").prop("checked", false);
+        }
+
+        function setTutorialSwitchOn() {
+            $("#cmn-toggle-4").prop("checked", true);
+        }
+
+        $(function () {
+            var selectedDay =
+            {% now "w" %} >
+            5 ? 1 : {% now "w" %};
+            $('.day' + selectedDay).addClass('warning');
+
+
+        });
+
+        $('#tutorialTrigger').click(function () {
+            $('#tutorialSubmit').click();
+        });
+
+        $('#tutorialDisableTrigger').click(function () {
+            $('#tutorialDisableSubmit').click();
+        });
+
+        $('#tutorialDisableModal').on('hide.bs.modal', function (e) {
+            setTutorialSwitchOn();
+        });
+
+    </script>
+{% endblock %}

@@ -1,0 +1,1729 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-08-29 18:07+0200\n"
+"PO-Revision-Date: 2015-08-29 18:08+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: es\n"
+"X-Generator: Poedit 1.8.2\n"
+
+#: .\gestionalumnos\settings.py:139
+msgid "English"
+msgstr "Inglés"
+
+#: .\gestionalumnos\settings.py:140
+msgid "Spanish"
+msgstr "Español"
+
+#: .\principal\forms.py:18 .\principal\forms.py:656 .\principal\forms.py:744
+#: .\principal\templates\layout\menu\admin-menu.html:41
+#: .\principal\templates\subject_link\import_subject_link.html:25
+#: .\principal\templates\tutorial\edit.html:16
+msgid "Subject"
+msgstr "Asignatura"
+
+#: .\principal\forms.py:21 .\principal\forms.py:135 .\principal\forms.py:866
+#: .\principal\templates\tutorial\edit.html:25
+#: .\principal\templates\tutorial_request\calendar.html:74
+#: .\principal\templates\user\list.html:41
+#: .\principal\views\SubjectLinkViews.py:271
+#: .\principal\views\SubjectLinkViews.py:292
+#: .\principal\views\SubjectLinkViews.py:294
+#: .\principal\views\SubjectLinkViews.py:297
+#: .\principal\views\UserViews.py:235
+msgid "Lecturer"
+msgstr "Profesor"
+
+#: .\principal\forms.py:61 .\principal\forms.py:124 .\principal\forms.py:127
+#: .\principal\forms.py:365
+msgid "There cannot be two certifications with the same code"
+msgstr "No puede haber dos titulaciones con el mismo código"
+
+#: .\principal\forms.py:134 .\principal\views\SubjectLinkViews.py:239
+#: .\principal\views\SubjectLinkViews.py:241
+#: .\principal\views\UserViews.py:221
+msgid "Student"
+msgstr "Alumno"
+
+#: .\principal\forms.py:215
+msgid "There cannot be two users with the same username"
+msgstr "No puede haber dos usuarios con el mismo nombre de usuario"
+
+#: .\principal\forms.py:220 .\principal\forms.py:224
+msgid "There cannot be two users with the same ID number"
+msgstr "No puede haber dos usuarios con el mismo DNI"
+
+#: .\principal\forms.py:231 .\principal\models.py:42
+msgid "Basic formation"
+msgstr "Formación básica"
+
+#: .\principal\forms.py:232 .\principal\models.py:43
+msgid "Compulsory"
+msgstr "Obligatoria"
+
+#: .\principal\forms.py:233 .\principal\models.py:44
+msgid "Optional"
+msgstr "Opcional"
+
+#: .\principal\forms.py:234 .\principal\models.py:45
+msgid "Final degree thesis"
+msgstr "Trabajo fin de grado"
+
+#: .\principal\forms.py:239 .\principal\models.py:50
+msgid "Annual"
+msgstr "Anual"
+
+#: .\principal\forms.py:240 .\principal\models.py:51
+msgid "Quarterly"
+msgstr "Cuatrimestral"
+
+#: .\principal\forms.py:385 .\principal\templates\profile\details.html:60
+#: .\principal\templates\profile\details.html:75
+msgid "Address"
+msgstr "Dirección"
+
+#: .\principal\forms.py:388 .\principal\templates\profile\details.html:66
+#: .\principal\templates\profile\details.html:81
+msgid "Province"
+msgstr "Provincia"
+
+#: .\principal\forms.py:391 .\principal\templates\profile\details.html:62
+#: .\principal\templates\profile\details.html:77
+msgid "Location"
+msgstr "Localidad"
+
+#: .\principal\forms.py:394 .\principal\templates\profile\details.html:64
+#: .\principal\templates\profile\details.html:79
+msgid "Postal code"
+msgstr "Código postal"
+
+#: .\principal\forms.py:397
+msgid "Five digits"
+msgstr "Cinco dígitos"
+
+#: .\principal\forms.py:399 .\principal\templates\profile\details.html:68
+#: .\principal\templates\profile\details.html:83
+msgid "Country"
+msgstr "País"
+
+#: .\principal\forms.py:410
+msgid "Photo"
+msgstr "Foto"
+
+#: .\principal\forms.py:420
+#: .\principal\templates\certification\details.html:17
+#: .\principal\templates\certification\edit.html:24
+#: .\principal\templates\department\details.html:17
+#: .\principal\templates\department\edit.html:26
+#: .\principal\templates\lecturer\details.html:92
+#: .\principal\templates\profile\details.html:42
+#: .\principal\templates\subject\details.html:13
+#: .\principal\templates\subject\edit.html:16
+msgid "Name"
+msgstr "Nombre"
+
+#: .\principal\forms.py:424 .\principal\templates\profile\details.html:44
+msgid "Surname"
+msgstr "Apellidos"
+
+#: .\principal\forms.py:428 .\principal\forms.py:737
+#: .\principal\templates\profile\details.html:46
+#: .\principal\templates\user\edit.html:48
+msgid "Email"
+msgstr "Correo electrónico"
+
+#: .\principal\forms.py:432 .\principal\templates\user\details.html:22
+#: .\principal\templates\user\edit.html:32
+msgid "ID number"
+msgstr "DNI"
+
+#: .\principal\forms.py:434 .\principal\forms.py:463
+msgid "Not a valid ID number"
+msgstr "DNI no válido"
+
+#: .\principal\forms.py:434
+msgid "Your ID number."
+msgstr "Su DNI"
+
+#: .\principal\forms.py:436
+msgid "Birth date"
+msgstr "Fecha de nacimiento"
+
+#: .\principal\forms.py:440 .\principal\forms.py:728
+#: .\principal\templates\lecturer\details.html:106
+#: .\principal\templates\profile\details.html:48
+msgid "Telephone"
+msgstr "Teléfono"
+
+#: .\principal\forms.py:444 .\principal\templates\profile\details.html:50
+msgid "Mobile phone"
+msgstr "Teléfono móvil"
+
+#: .\principal\forms.py:461
+msgid "This ID number is already in use"
+msgstr "Este DNI ya está en uso"
+
+#: .\principal\forms.py:466
+msgid "You must select a date in the past."
+msgstr "Debe seleccionar una fecha en el pasado."
+
+#: .\principal\forms.py:472
+msgid "Image file too large. Max upload size is 512kb"
+msgstr ""
+"Archivo de la imagen demasiado grande. El tamaño máximo de subida es 512kb"
+
+#: .\principal\forms.py:474
+msgid "Not a valid file. Only PNG, JPG and JPEG are supported"
+msgstr "No es un archivo válido. Se admiten sólo PNG, JPG y JPEG"
+
+#: .\principal\forms.py:481 .\principal\models.py:246
+#: .\principal\templates\lecturer\details.html:166
+msgid "Monday"
+msgstr "Lunes"
+
+#: .\principal\forms.py:482 .\principal\models.py:247
+#: .\principal\templates\lecturer\details.html:167
+msgid "Tuesday"
+msgstr "Martes"
+
+#: .\principal\forms.py:483 .\principal\models.py:248
+#: .\principal\templates\lecturer\details.html:168
+msgid "Wednesday"
+msgstr "Miércoles"
+
+#: .\principal\forms.py:484 .\principal\models.py:249
+#: .\principal\templates\lecturer\details.html:169
+msgid "Thursday"
+msgstr "Jueves"
+
+#: .\principal\forms.py:485 .\principal\models.py:250
+#: .\principal\templates\lecturer\details.html:170
+msgid "Friday"
+msgstr "Viernes"
+
+#: .\principal\forms.py:505
+msgid "Date range"
+msgstr "Rango de fechas"
+
+#: .\principal\forms.py:507 .\principal\templates\lecturer\details.html:188
+msgid "From"
+msgstr "De"
+
+#: .\principal\forms.py:511
+msgid "To"
+msgstr "Hasta"
+
+#: .\principal\forms.py:515
+msgid "Day"
+msgstr "Día"
+
+#: .\principal\forms.py:529
+msgid "The start hour must be before the end hour."
+msgstr "La hora de comienzo debe ser antes de la hora final."
+
+#: .\principal\forms.py:539
+msgid "There is a conflict between new date and the existing ones."
+msgstr "Hay un conflicto entre la nueva fecha y las ya existentes."
+
+#: .\principal\forms.py:548 .\principal\forms.py:846 .\principal\forms.py:870
+#: .\principal\forms.py:884
+msgid "Motivation"
+msgstr "Motivo"
+
+#: .\principal\forms.py:569
+msgid "You have to enter a reason to reject a tutorial request."
+msgstr "Tienes que introducir una razón para rechazar una petición de tutoría."
+
+#: .\principal\forms.py:620
+msgid "The lecturer is already linked to this subject"
+msgstr "El profesor ya está vinculado a esta asignatura."
+
+#: .\principal\forms.py:645 .\principal\forms.py:790 .\principal\forms.py:834
+msgid "File file too large ( > 512kb )"
+msgstr "Archivo demasiado grande (> 512kb)"
+
+#: .\principal\forms.py:647 .\principal\forms.py:792 .\principal\forms.py:836
+msgid "Not valid file type. Only XML and CSV are supported"
+msgstr "Tipo de archivo no válido. Se admiten sólo XML y CSV"
+
+#: .\principal\forms.py:657 .\principal\forms.py:745
+#: .\principal\templates\subject\list.html:16
+msgid "Select a subject"
+msgstr "Seleccione una asignatura"
+
+#: .\principal\forms.py:665
+msgid "Text"
+msgstr "Texto"
+
+#: .\principal\forms.py:679
+msgid "New password"
+msgstr "Nueva contraseña"
+
+#: .\principal\forms.py:691
+msgid "Repeat new password"
+msgstr "Repita la nueva contraseña"
+
+#: .\principal\forms.py:700 .\principal\forms.py:711
+msgid "Password mismatch"
+msgstr "Las contraseñas no coinciden"
+
+#: .\principal\forms.py:715
+msgid "Empty password"
+msgstr "Contraseña vacía"
+
+#: .\principal\forms.py:719 .\principal\templates\user\details.html:18
+#: .\principal\templates\user\edit.html:20
+msgid "First name"
+msgstr "Nombre"
+
+#: .\principal\forms.py:722 .\principal\templates\user\details.html:20
+#: .\principal\templates\user\edit.html:26
+msgid "Last name"
+msgstr "Apellidos"
+
+#: .\principal\forms.py:725 .\principal\templates\lecturer\details.html:94
+msgid "Category"
+msgstr "Categoría"
+
+#: .\principal\forms.py:731 .\principal\templates\lecturer\details.html:108
+msgid "Office"
+msgstr "Despacho"
+
+#: .\principal\forms.py:734 .\principal\templates\department\details.html:21
+#: .\principal\templates\department\edit.html:31
+#: .\principal\templates\lecturer\details.html:110
+#: .\principal\templates\subject\details.html:18
+#: .\principal\templates\subject\edit.html:42
+msgid "Web"
+msgstr "Web"
+
+#: .\principal\forms.py:753
+msgid "Title"
+msgstr "Título"
+
+#: .\principal\forms.py:756
+msgid "Body"
+msgstr "Cuerpo"
+
+#: .\principal\forms.py:842
+msgid "Requests to cancel"
+msgstr "Solicitudes para cancelar"
+
+#: .\principal\forms.py:856
+msgid "Filter"
+msgstr "Filtro"
+
+#: .\principal\forms.py:856
+msgid "All subjects"
+msgstr "Todas las asignaturas"
+
+#: .\principal\forms.py:868 .\principal\forms.py:877
+#: .\principal\templates\tutorial_request\calendar.html:76
+msgid "Date"
+msgstr "Fecha"
+
+#: .\principal\forms.py:880
+msgid "Type to search a student"
+msgstr "Escriba para buscar estudiantes"
+
+#: .\principal\forms.py:898
+#, python-format
+msgid "The new password must be at least %d characters long."
+msgstr "La nueva contraseña debe tener al menos %d caracteres."
+
+#: .\principal\models.py:176
+#: .\principal\templates\tutorial_request\list.html:92
+msgid "Pending"
+msgstr "Pendiente"
+
+#: .\principal\models.py:177
+#: .\principal\templates\tutorial_request\list.html:101
+msgid "Rejected"
+msgstr "Rechazado"
+
+#: .\principal\models.py:178
+#: .\principal\templates\tutorial_request\list.html:98
+msgid "Cancelled"
+msgstr "Cancelada"
+
+#: .\principal\models.py:179
+#: .\principal\templates\tutorial_request\list.html:95
+msgid "Accepted"
+msgstr "Aceptada"
+
+#: .\principal\templates\404.html:8
+msgid "Not Found"
+msgstr "Sin resultados"
+
+#: .\principal\templates\404.html:10
+msgid "The requested URL was not found on this server."
+msgstr "La URL solicitada no fue encontrada en este servidor."
+
+#: .\principal\templates\404.html:12 .\principal\templates\500.html:12
+msgid "Return to home page"
+msgstr "Volver a la página de inicio"
+
+#: .\principal\templates\500.html:8
+msgid "Server error"
+msgstr "Error del servidor."
+
+#: .\principal\templates\500.html:10
+msgid "Sorry, there's been an error. Thanks for your patience."
+msgstr "Lo sentimos, ha habido un error. Gracias por su paciencia."
+
+#: .\principal\templates\calendar.html:19
+msgid "Tutorials calendar"
+msgstr "Calendario de tutorías"
+
+#: .\principal\templates\calendar.html:23
+msgid "Click on the applicant name to view more details"
+msgstr "Haga clic en el nombre del solicitante para ver más detalles"
+
+#: .\principal\templates\calendar.html:24
+msgid "All dates in UTC timezone."
+msgstr "Todas las fechas en la zona horaria UTC."
+
+#: .\principal\templates\calendar.html:29
+msgid "Prev"
+msgstr "Anterior"
+
+#: .\principal\templates\calendar.html:30
+msgid "Today"
+msgstr "Hoy"
+
+#: .\principal\templates\calendar.html:31
+msgid "Next"
+msgstr "Siguiente"
+
+#: .\principal\templates\certification\ajax_search.html:5
+#: .\principal\templates\certification\list.html:30
+#: .\principal\templates\subject\details.html:90
+#: .\principal\templates\subject\import_subject.html:36
+#: .\principal\templates\subject_link\edit.html:18
+msgid "Certifications"
+msgstr "Titulaciones"
+
+#: .\principal\templates\certification\ajax_search.html:10
+#: .\principal\templates\certification\list.html:36
+#: .\principal\templates\subject\details.html:101
+msgid "No certifications found."
+msgstr "No se han encontrado titulaciones."
+
+#: .\principal\templates\certification\details.html:7
+msgid "Certification details"
+msgstr "Detalles de titulación"
+
+#: .\principal\templates\certification\details.html:9
+msgid "It displays all the information a certification"
+msgstr "Muestra toda la información de una titulación"
+
+#: .\principal\templates\certification\details.html:13
+msgid "Certification data"
+msgstr "Detalles de titulación"
+
+#: .\principal\templates\certification\details.html:19
+#: .\principal\templates\certification\edit.html:18
+#: .\principal\templates\department\details.html:19
+#: .\principal\templates\department\edit.html:21
+#: .\principal\templates\subject\details.html:15
+#: .\principal\templates\subject\edit.html:21
+msgid "Code"
+msgstr "Código"
+
+#: .\principal\templates\certification\details.html:24
+msgid ""
+"This action is irreversible. Are you sure you want to delete this "
+"certification?"
+msgstr ""
+"Esta acción es irreversible. ¿Está seguro que desea eliminar esta titulación?"
+
+#: .\principal\templates\certification\details.html:25
+#: .\principal\templates\subject\details.html:125
+#: .\principal\templates\user\details.html:29
+msgid "Delete"
+msgstr "Borrar"
+
+#: .\principal\templates\certification\details.html:29
+#: .\principal\templates\department\details.html:30
+#: .\principal\templates\subject\ajax_search.html:5
+#: .\principal\templates\subject\list.html:34
+#: .\principal\templates\user\details.html:37
+msgid "Subjects"
+msgstr "Asignaturas"
+
+#: .\principal\templates\certification\details.html:37
+#: .\principal\templates\department\details.html:38
+#: .\principal\templates\user\details.html:45
+#: .\principal\templates\user\details.html:70
+msgid "Subject details"
+msgstr "Detalles de asignatura"
+
+#: .\principal\templates\certification\details.html:39
+#: .\principal\templates\user\details.html:46
+#: .\principal\templates\user\details.html:71
+msgid "Unlink subject"
+msgstr "Desvincular la asignatura"
+
+#: .\principal\templates\certification\details.html:43
+#: .\principal\templates\department\details.html:41
+#: .\principal\templates\subject\ajax_search.html:10
+#: .\principal\templates\subject\list.html:40
+#: .\principal\templates\user\details.html:49
+#: .\principal\templates\user\details.html:74
+msgid "No subjects found."
+msgstr "No se han encontrado asignaturas."
+
+#: .\principal\templates\certification\details.html:57
+#: .\principal\templates\user\details.html:91
+msgid "Are you sure you want to unlink subject?"
+msgstr "¿Está seguro que desea desvincular la asignatura?"
+
+#: .\principal\templates\certification\edit.html:10
+msgid "Create certification"
+msgstr "Crear titulación"
+
+#: .\principal\templates\certification\edit.html:11
+msgid "It lets you create certifications"
+msgstr "Le permite crear titulaciones"
+
+#: .\principal\templates\certification\edit.html:32
+#: .\principal\templates\lecturer\edit.html:58
+#: .\principal\templates\subject\edit.html:66
+#: .\principal\templates\subject_link\edit.html:27
+#: .\principal\templates\user\edit.html:66
+msgid "Save changes"
+msgstr "Guardar Cambios"
+
+#: .\principal\templates\certification\list.html:12
+msgid "Certification list"
+msgstr "Lista de titulaciones"
+
+#: .\principal\templates\certification\list.html:13
+msgid ""
+"It shows a list of all certifications which are registered in the system"
+msgstr ""
+"Muestra una lista de todos los departamentos que estén registrados en el "
+"sistema"
+
+#: .\principal\templates\certification\list.html:19
+#: .\principal\templates\department\list.html:21
+#: .\principal\templates\subject\list.html:23
+#: .\principal\templates\user\list.html:26
+msgid "Search"
+msgstr "Buscar"
+
+#: .\principal\templates\cookies.html:8
+#: .\principal\templates\layout\base.html:64
+msgid "Cookies policy"
+msgstr "Política de cookies"
+
+#: .\principal\templates\cookies.html:10
+msgid ""
+"Our cookies policy is subject to periodic updates. Its purpose is to help "
+"you understand our use of cookies, the purpose of cookies used and options "
+"for the user to manage them."
+msgstr ""
+"Nuestra política de cookies está sujeto a actualizaciones periódicas. Su "
+"propósito es ayudarle a entender el uso de cookies, el propósito de cookies "
+"que se utilizan y opciones del usuario para administrarlas."
+
+#: .\principal\templates\cookies.html:12
+msgid ""
+"Users can access this information at any time via the link enabled on the "
+"web page."
+msgstr ""
+"Los usuarios pueden acceder a esta información en cualquier momento a través "
+"del enlace habilitado en la página web."
+
+#: .\principal\templates\cookies.html:14
+msgid "What is a Cookie?"
+msgstr "¿Qué son las 'cookies'?"
+
+#: .\principal\templates\cookies.html:16
+msgid ""
+"A 'cookie' is a small text file that a website stores on browser user. "
+"Cookies make using and navigating a website and are essential for Internet "
+"operation, providing many advantages in service delivery interactive."
+msgstr ""
+"Una cookie es un pequeño archivo de texto que un sitio Web almacena en el "
+"usuario del navegador. Las cookies hacen uso y navegando por un sitio web y "
+"son esenciales para el funcionamiento de Internet, proporcionando muchas "
+"ventajas en la prestación de servicios interactivos."
+
+#: .\principal\templates\cookies.html:18
+msgid ""
+"Cookies are used, for example, to manage the user's session (reducing the "
+"number of times that you must insert your user data), improving the services "
+"offered, or to adapt the contents of a web page to your preferences."
+msgstr ""
+"Las cookies se utilizan, por ejemplo, para validar los registros en la web "
+"(recordar usuario y contraseña); recordar opciones como tamaño, idioma, "
+"navegador utilizado; analizar los hábitos y comportamientos del usuario para "
+"mejorar los servicios ofrecidos, o para adecuar los contenidos de una página "
+"web a las preferencias del visitante."
+
+#: .\principal\templates\cookies.html:20
+msgid ""
+"Cookies may be 'session', so it will be erased once the user leaves the page "
+"web that generated or 'persistent', which remain on your computer to a date "
+"determined."
+msgstr ""
+"Las cookies pueden ser de “sesión”, por lo que se borrarán una vez el "
+"usuario abandone la página web que las generó o “persistentes”, que "
+"permanecen en su ordenador hasta una fecha determinada."
+
+#: .\principal\templates\cookies.html:22
+msgid ""
+"Cookies also can be 'proper', managed by the domain to which the user "
+"accesses and requesting a service or 'third party cookies', sent to the user "
+"equipment from a domain accessed differently."
+msgstr ""
+"Asimismo las Cookies pueden ser “propias”, gestionadas por el dominio al que "
+"el usuario accede y del que solicita un determinado servicio o “cookies de "
+"terceros”, enviadas al equipo de usuario desde un dominio diferente al que "
+"se accede."
+
+#: .\principal\templates\cookies.html:24
+msgid "Common cookies in this site"
+msgstr "Cookies comunes en este sitio"
+
+#: .\principal\templates\cookies.html:27
+msgid ""
+"Session Cookie ('sessionid'): Used to uniquely identify each user accessing "
+"the application. This cookie is necessary to use these websites, so if the "
+"user decides to delete this cookie from your device, the web site may not "
+"function correctly."
+msgstr ""
+"Cookie de sesión ('sessionid'): sirve para identificar unívocamente a cada "
+"usuario acceder a la aplicación. Esta cookie es necesaria en estos sitios "
+"web, por lo que si el usuario decide eliminar este cookie desde su "
+"dispositivo, el sitio web puede que no funcione correctamente."
+
+#: .\principal\templates\cookies.html:30
+msgid ""
+"CSRF token cookie ('csrftoken'): It is used as a security measure to prevent "
+"various attacks."
+msgstr ""
+"Cookie de token CSRF ('csrftoken'): se utiliza como medida de seguridad para "
+"prevenir ataques varios."
+
+#: .\principal\templates\cookies.html:33
+msgid ""
+"Acceptance cookie ('cp-enabled'): Used to remember if the user has already "
+"accepted the cookie policy of the site."
+msgstr ""
+"Cookie de aceptación ('cp-enabled'): utilizado para recordar si el usuario "
+"ya ha aceptado la política de cookies del sitio."
+
+#: .\principal\templates\department\ajax_search.html:5
+#: .\principal\templates\department\list.html:33
+msgid "Departments"
+msgstr "Departamentos"
+
+#: .\principal\templates\department\ajax_search.html:10
+#: .\principal\templates\department\list.html:40
+msgid "No departments found."
+msgstr "No se han encontrado departamentos."
+
+#: .\principal\templates\department\details.html:7
+msgid "Department details"
+msgstr "Detalles del departamento"
+
+#: .\principal\templates\department\details.html:9
+msgid "It displays all the information a department"
+msgstr "Muestra toda la información de un departamento"
+
+#: .\principal\templates\department\details.html:13
+msgid "Department data"
+msgstr "Datos del departamento"
+
+#: .\principal\templates\department\details.html:26
+msgid "Edit"
+msgstr "Editar"
+
+#: .\principal\templates\department\edit.html:11
+msgid "Create department"
+msgstr "Crear departamento"
+
+#: .\principal\templates\department\edit.html:12
+msgid "It lets you create departments"
+msgstr "Le permite crear departamentos"
+
+#: .\principal\templates\department\edit.html:14
+msgid "Edit department"
+msgstr "Editar departamento"
+
+#: .\principal\templates\department\edit.html:15
+msgid "It lets you edit departments"
+msgstr "Le permite editar departamentos"
+
+#: .\principal\templates\department\edit.html:37
+#: .\principal\templates\user\list.html:53
+msgid "Save"
+msgstr "Guardar"
+
+#: .\principal\templates\department\edit.html:39
+#: .\principal\templates\lecturer\details.html:76
+#: .\principal\templates\tutorial_request\calendar.html:86
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: .\principal\templates\department\import_department.html:8
+msgid "Import departments"
+msgstr "Importar departamentos"
+
+#: .\principal\templates\department\import_department.html:9
+msgid "Allows to import departments to the system"
+msgstr "Permite para importar departamentos al sistema"
+
+#: .\principal\templates\department\import_department.html:13
+msgid ""
+"Process was completed successfully, but the following departments already "
+"exist:"
+msgstr ""
+"Se completó con éxito el proceso, pero ya existen los siguientes "
+"departamentos:"
+
+#: .\principal\templates\department\import_department.html:25
+#: .\principal\templates\subject\import_subject.html:41
+#: .\principal\templates\subject_link\import_subject_link.html:30
+#: .\principal\templates\user\import_user.html:25
+msgid "File"
+msgstr "Archivo"
+
+#: .\principal\templates\department\import_department.html:31
+#: .\principal\templates\subject\import_subject.html:47
+#: .\principal\templates\subject_link\import_subject_link.html:36
+#: .\principal\templates\user\import_user.html:31
+msgid "The supported files are XML and CSV"
+msgstr "Los archivos soportados son XML y CSV"
+
+#: .\principal\templates\department\import_department.html:34
+#: .\principal\templates\subject\import_subject.html:50
+#: .\principal\templates\subject_link\import_subject_link.html:40
+#: .\principal\templates\user\import_user.html:34
+msgid "Import"
+msgstr "Importar"
+
+#: .\principal\templates\department\list.html:12
+msgid "Department list"
+msgstr "Lista de departamentos"
+
+#: .\principal\templates\department\list.html:14
+msgid "It shows a list of all departments which are registered in the system"
+msgstr ""
+"Muestra una lista de todos los departamentos que estén registrados en el "
+"sistema"
+
+#: .\principal\templates\error.html:5
+msgid "We are sorry. An error has occurred."
+msgstr "Lo sentimos. Ha ocurrido un error."
+
+#: .\principal\templates\home.html:8
+msgid "Welcome"
+msgstr "Bienvenido"
+
+#: .\principal\templates\home.html:9
+msgid ""
+"Welcome to students management website of University of Seville. On the top "
+"menu you can access to all your resources."
+msgstr ""
+"Bienvenido al sistema de gestión de estudiantes de la Universidad de "
+"Sevilla. En el menú superior puede acceder a todos sus recursos."
+
+#: .\principal\templates\layout\base.html:8
+#: .\principal\templates\layout\header.html:12
+msgid "Students management"
+msgstr "Gestión de estudiantes"
+
+#: .\principal\templates\layout\base.html:62
+msgid "We use cookies to track usage and preferences."
+msgstr "Utilizamos cookies para rastrear el uso y preferencias."
+
+#: .\principal\templates\layout\base.html:68
+msgid "I accept"
+msgstr "Acepto"
+
+#: .\principal\templates\layout\header.html:33
+msgid "Change password"
+msgstr "Cambiar contraseña"
+
+#: .\principal\templates\layout\header.html:36
+msgid "Logout"
+msgstr "Cerrar sesión"
+
+#: .\principal\templates\layout\menu\admin-menu.html:6
+msgid "Certification"
+msgstr "Titulación"
+
+#: .\principal\templates\layout\menu\admin-menu.html:10
+msgid "New certification"
+msgstr "Nueva titulación"
+
+#: .\principal\templates\layout\menu\admin-menu.html:11
+msgid "Certification list "
+msgstr "Lista de titulaciones"
+
+#: .\principal\templates\layout\menu\admin-menu.html:17
+msgid "Departament"
+msgstr "Departamento"
+
+#: .\principal\templates\layout\menu\admin-menu.html:21
+msgid "New departament"
+msgstr "Nuevo departamento"
+
+#: .\principal\templates\layout\menu\admin-menu.html:22
+msgid "Departments list"
+msgstr "Lista de departamentos"
+
+#: .\principal\templates\layout\menu\admin-menu.html:23
+msgid "Import departaments"
+msgstr "Importar departamentos"
+
+#: .\principal\templates\layout\menu\admin-menu.html:29
+#: .\principal\templates\user\edit.html:42
+msgid "User"
+msgstr "Usuario"
+
+#: .\principal\templates\layout\menu\admin-menu.html:33
+msgid "New user"
+msgstr "Nuevo usuario"
+
+#: .\principal\templates\layout\menu\admin-menu.html:34
+#: .\principal\templates\user\list.html:18
+msgid "User list"
+msgstr "Lista de usuarios"
+
+#: .\principal\templates\layout\menu\admin-menu.html:35
+#: .\principal\templates\subject\details.html:120
+#: .\principal\templates\subject\details.html:121
+#: .\principal\templates\user\import_user.html:8
+msgid "Import users"
+msgstr "Importar usuarios"
+
+#: .\principal\templates\layout\menu\admin-menu.html:45
+msgid "New subject"
+msgstr "Nueva asgiantura"
+
+#: .\principal\templates\layout\menu\admin-menu.html:46
+msgid "Subjects list "
+msgstr "Lista de asignaturas"
+
+#: .\principal\templates\layout\menu\admin-menu.html:47
+#: .\principal\templates\subject\import_subject.html:8
+msgid "Import subjects"
+msgstr "Importar asignaturas"
+
+#: .\principal\templates\layout\menu\alumno-menu.html:4
+msgid "Student profile"
+msgstr "Perfil del estudiante"
+
+#: .\principal\templates\layout\menu\alumno-menu.html:7
+#: .\principal\templates\student\list.html:41
+msgid "View profile"
+msgstr "Ver perfil"
+
+#: .\principal\templates\layout\menu\alumno-menu.html:8
+#: .\principal\templates\layout\menu\profesor-menu.html:15
+#: .\principal\templates\lecturer\edit.html:8
+msgid "Edit profile"
+msgstr "Editar perfil"
+
+#: .\principal\templates\layout\menu\alumno-menu.html:12
+#: .\principal\templates\tutorial_request\calendar.html:22
+msgid "Seek tutorials"
+msgstr "Buscar tutorías"
+
+#: .\principal\templates\layout\menu\alumno-menu.html:15
+#: .\principal\views\TutorialRequestViews.py:35
+#: .\principal\views\TutorialRequestViews.py:85
+msgid "Tutorial requests"
+msgstr "Peticiones de tutoría"
+
+#: .\principal\templates\layout\menu\alumno-menu.html:18
+#: .\principal\templates\layout\menu\profesor-menu.html:8
+msgid "View tutorial requests"
+msgstr "Ver peticiones de tutoría"
+
+#: .\principal\templates\layout\menu\alumno-menu.html:19
+#: .\principal\templates\layout\menu\profesor-menu.html:9
+msgid "Accepted tutorials"
+msgstr "Tutorías aceptadas"
+
+#: .\principal\templates\layout\menu\alumno-menu.html:24
+msgid "My subjects"
+msgstr "Mis asignatruas"
+
+#: .\principal\templates\layout\menu\alumno-menu.html:25
+#: .\principal\templates\layout\menu\profesor-menu.html:14
+#: .\principal\templates\new\list.html:9
+#: .\principal\templates\subject\details.html:66
+msgid "News"
+msgstr "Noticias"
+
+#: .\principal\templates\layout\menu\anonymous-menu.html:2
+#: .\principal\templates\login.html:51
+msgid "Login"
+msgstr "Iniciar sesión"
+
+#: .\principal\templates\layout\menu\profesor-menu.html:2
+msgid "My students"
+msgstr "Mis alumnos"
+
+#: .\principal\templates\layout\menu\profesor-menu.html:4
+#: .\principal\templates\lecturer\details.html:123
+msgid "Tutorials"
+msgstr "Tutorías"
+
+#: .\principal\templates\layout\menu\profesor-menu.html:7
+#: .\principal\templates\tutorial\edit.html:36
+msgid "View tutorials"
+msgstr "Ver tutorías"
+
+#: .\principal\templates\layout\menu\profesor-menu.html:10
+msgid "Calendar"
+msgstr "Calendario"
+
+#: .\principal\templates\layout\menu\profesor-menu.html:11
+msgid "Assign tutorials"
+msgstr "Asignar tutorías"
+
+#: .\principal\templates\lecturer\details.html:21
+msgid "Edit tutorial"
+msgstr "Editar tutoría"
+
+#: .\principal\templates\lecturer\details.html:23
+msgid "Create new tutorial"
+msgstr "Añadir tutoría"
+
+#: .\principal\templates\lecturer\details.html:46
+#: .\principal\templates\new\list.html:105
+#: .\principal\templates\profile\details.html:157
+#: .\principal\templates\profile\edit.html:29
+#: .\principal\templates\tutorial_request\list.html:135
+#: .\principal\templates\tutorial_request\list.html:193
+msgid "Close"
+msgstr "Cerrar"
+
+#: .\principal\templates\lecturer\details.html:47
+#: .\principal\templates\new\list.html:106
+#: .\principal\templates\profile\edit.html:90
+#: .\principal\templates\tutorial_request\calendar.html:81
+#: .\principal\templates\tutorial_request\list.html:136
+#: .\principal\templates\tutorial_request\list.html:195
+msgid "Submit"
+msgstr "Enviar"
+
+#: .\principal\templates\lecturer\details.html:59
+#: .\principal\templates\lecturer\details.html:78
+msgid "Disable tutorials"
+msgstr "Desactivar tutorías"
+
+#: .\principal\templates\lecturer\details.html:67
+msgid "Desactivation reason"
+msgstr "Razón de la desactivación"
+
+#: .\principal\templates\lecturer\details.html:88
+#: .\principal\templates\lecturer\edit.html:15
+#: .\principal\templates\profile\edit.html:42
+#: .\principal\templates\user\edit.html:17
+msgid "Personal data"
+msgstr "Datos personales"
+
+#: .\principal\templates\lecturer\details.html:102
+#: .\principal\templates\lecturer\edit.html:35
+msgid "Contact data"
+msgstr "Datos de contacto"
+
+#: .\principal\templates\lecturer\details.html:126
+msgid "Request appointment"
+msgstr "Solicitar cita"
+
+#: .\principal\templates\lecturer\details.html:156
+msgid "Edit selected tutorial"
+msgstr "Editar tutoría seleccionada"
+
+#: .\principal\templates\lecturer\details.html:158
+msgid "Add tutorial range"
+msgstr "Añadir tutoría"
+
+#: .\principal\templates\lecturer\details.html:181
+msgid "Are you sure that you want to remove this entry?"
+msgstr "¿Está seguro que desea eliminar esta entrada?"
+
+#: .\principal\templates\lecturer\details.html:189
+msgid "to"
+msgstr "a"
+
+#: .\principal\templates\lecturer\details.html:201
+msgid "Tutorials are disabled. Here is the reason: "
+msgstr "Las tutorías están deshabilitadas. Aquí está la razón:"
+
+#: .\principal\templates\lecturer\details.html:218
+msgid "Are you sure you want to enable tutorials?"
+msgstr "¿Está seguro que desea activar las tutorías?"
+
+#: .\principal\templates\lecturer\details.html:224
+msgid "Are you sure you want to disable tutorials?"
+msgstr "¿Está seguro que desea desactivar las tutorías?"
+
+#: .\principal\templates\lecturer\list.html:7
+msgid "Select a lecturer to see tutorials"
+msgstr "Selecciona un profesor para ver tutorías"
+
+#: .\principal\templates\lecturer\list.html:12
+#: .\principal\templates\subject\details.html:52
+#: .\principal\templates\user\ajax_search.html:31
+#: .\principal\templates\user\list.html:92
+msgid "No lecturers found."
+msgstr "No se han encontrado profesores."
+
+#: .\principal\templates\login.html:11
+msgid "Error"
+msgstr "Error"
+
+#: .\principal\templates\login.html:12
+msgid "Your username and password didn't match. Please try again."
+msgstr ""
+"Su nombre de usuario y la contraseña no coinciden. Por favor, vuelva a "
+"intentarlo."
+
+#: .\principal\templates\login.html:18
+msgid "Warning"
+msgstr "Atención"
+
+#: .\principal\templates\login.html:19
+msgid ""
+"Your account doesn't have access to this page. To proceed, please login with "
+"an account that has access."
+msgstr ""
+"Su cuenta no tiene acceso a esta página. Para continuar, inicia sesión con "
+"una cuenta que tenga acceso."
+
+#: .\principal\templates\login.html:29
+msgid "Log in"
+msgstr "Iniciar sesión"
+
+#: .\principal\templates\new\list.html:15
+msgid "Select subject"
+msgstr "Seleccione una asignatura"
+
+#: .\principal\templates\new\list.html:26
+msgid "Add new"
+msgstr "Añadir noticia"
+
+#: .\principal\templates\new\list.html:45
+msgid "Published"
+msgstr "Publicada"
+
+#: .\principal\templates\new\list.html:46
+msgid "Mod.:"
+msgstr "Mod.:"
+
+#: .\principal\templates\new\list.html:54
+msgid "This action is unrecoverable. Are you sure you want to delete this new?"
+msgstr ""
+"Esta acción es irrecuperable. ¿Es seguro que desea eliminar esta noticia?"
+
+#: .\principal\templates\new\list.html:81
+#: .\principal\templates\new\list.html:125
+msgid "Publish new"
+msgstr "Publicar noticia"
+
+#: .\principal\templates\new\list.html:83
+msgid "Edit new"
+msgstr "Editar noticia"
+
+#: .\principal\templates\profile\details.html:10
+msgid "Print this page"
+msgstr "Imprimir esta página"
+
+#: .\principal\templates\profile\details.html:17
+#: .\principal\templates\profile\details.html:32
+#: .\principal\templates\profile\edit.html:36
+msgid "Student data"
+msgstr "Ficha del estudiante"
+
+#: .\principal\templates\profile\details.html:20
+#: .\principal\templates\profile\details.html:58
+#: .\principal\templates\profile\edit.html:61
+msgid "Residence address"
+msgstr "Dirección de residencia"
+
+#: .\principal\templates\profile\details.html:23
+#: .\principal\templates\profile\details.html:73
+#: .\principal\templates\profile\edit.html:74
+msgid "Address while studying"
+msgstr "Dirección de estudios"
+
+#: .\principal\templates\profile\details.html:26
+msgid "Updated"
+msgstr "Actualizado"
+
+#: .\principal\templates\profile\details.html:40
+msgid "ID"
+msgstr "DNI"
+
+#: .\principal\templates\profile\details.html:93
+msgid "No student data available."
+msgstr "No hay datos de estudiante disponibles."
+
+#: .\principal\templates\profile\details.html:102
+msgid "Remarks"
+msgstr "Observaciones"
+
+#: .\principal\templates\profile\details.html:104
+msgid "Add remark"
+msgstr "Añadir observación"
+
+#: .\principal\templates\profile\details.html:136
+msgid "Add remark to"
+msgstr "Añadir observación a"
+
+#: .\principal\templates\profile\details.html:159
+msgid "Save remark"
+msgstr "Guardar observación"
+
+#: .\principal\templates\profile\edit.html:23
+msgid "Current photo"
+msgstr "Foto actual"
+
+#: .\principal\templates\profile\edit.html:50
+msgid "View current photo"
+msgstr "Ver foto actual"
+
+#: .\principal\templates\student\list.html:10
+msgid "Student list"
+msgstr "Lista de estudiantes"
+
+#: .\principal\templates\student\list.html:12
+msgid "These are the students you teach the class"
+msgstr "Estos son los estudiantes a los que imparte clase"
+
+#: .\principal\templates\student\list.html:21
+msgid "Apply filter"
+msgstr "Aplicar filtro"
+
+#: .\principal\templates\student\list.html:50
+#: .\principal\templates\user\ajax_search.html:15
+#: .\principal\templates\user\list.html:72
+msgid "No students found."
+msgstr "Ningún estudiante encontrado."
+
+#: .\principal\templates\subject\details.html:9
+msgid "Subject data"
+msgstr "Datos de la asignatura"
+
+#: .\principal\templates\subject\details.html:21
+#: .\principal\templates\subject\edit.html:26
+msgid "Course"
+msgstr "Curso"
+
+#: .\principal\templates\subject\details.html:23
+msgid "Semester"
+msgstr "Cuatrimestre"
+
+#: .\principal\templates\subject\details.html:25
+#: .\principal\templates\subject\edit.html:37
+msgid "Credits"
+msgstr "Créditos"
+
+#: .\principal\templates\subject\details.html:27
+#: .\principal\templates\subject\edit.html:53
+msgid "Duration"
+msgstr "Duración"
+
+#: .\principal\templates\subject\details.html:29
+#: .\principal\templates\subject\edit.html:58
+#: .\principal\templates\user\edit.html:54
+msgid "Type"
+msgstr "Tipo"
+
+#: .\principal\templates\subject\details.html:31
+#: .\principal\templates\subject\edit.html:48
+msgid "Department"
+msgstr "Departamento"
+
+#: .\principal\templates\subject\details.html:39
+#: .\principal\templates\user\ajax_search.html:21
+#: .\principal\templates\user\list.html:82
+msgid "Lecturers"
+msgstr "Profesores"
+
+#: .\principal\templates\subject\details.html:77
+msgid "No news found."
+msgstr "No se han encontrado noticias."
+
+#: .\principal\templates\subject\details.html:92
+msgid "Link or unlink certifications"
+msgstr "Vincular o desvincular titulacioness"
+
+#: .\principal\templates\subject\details.html:118
+#: .\principal\templates\subject_link\import_subject_link.html:8
+msgid "Link users"
+msgstr "Vincular usuarios"
+
+#: .\principal\templates\subject\details.html:124
+msgid ""
+"This action is irreversible. Are you sure you want to delete this subject?"
+msgstr ""
+"Esta acción es irreversible. ¿Está seguro que desea eliminar esta asignatura?"
+
+#: .\principal\templates\subject\details.html:127
+msgid "Unlink all lecturers and students."
+msgstr "Desvincular a todos los profesores y estudiantes"
+
+#: .\principal\templates\subject\details.html:127
+msgid ""
+"This action is irreversible. Are you sure you want to unlink all lecturers "
+"and students from this subject?"
+msgstr ""
+"Esta acción es irreversible. ¿Está seguro que desea desvincular todos los "
+"profesores y estudiantes de esta asignatura?"
+
+#: .\principal\templates\subject\details.html:128
+msgid "Unlink users"
+msgstr "Desvincular todos los usuarios"
+
+#: .\principal\templates\subject\edit.html:10
+msgid "Create subject"
+msgstr "Nueva asgiantura"
+
+#: .\principal\templates\subject\edit.html:11
+msgid "It lets you create subjects"
+msgstr "Le permite crear asignaturas"
+
+#: .\principal\templates\subject\edit.html:32
+msgid "Quarter"
+msgstr "Cuatrimestral"
+
+#: .\principal\templates\subject\import_subject.html:9
+msgid "Allows to create subjects and links them to the certifications"
+msgstr "Le permite crear asignaturas y asignarlas a las titulaciones"
+
+#: .\principal\templates\subject\import_subject.html:13
+msgid ""
+"Process was completed successfully, but the following subjects already exist:"
+msgstr ""
+"Se completó con éxito el proceso, pero ya existen las siguientes asignaturas:"
+
+#: .\principal\templates\subject\import_subject.html:24
+msgid ""
+"Process was completed successfully, but have not been able to link the "
+"subjects:"
+msgstr ""
+"Se ha completado el proceso de emparejado, pero no han podido vincular las "
+"asignaturas:"
+
+#: .\principal\templates\subject\list.html:13
+msgid "Subject list"
+msgstr "Lista de asignaturas"
+
+#: .\principal\templates\subject\list.html:14
+msgid "It shows a list of all subject which are registered in the system"
+msgstr ""
+"Muestra una lista de todos los departamentos que estén registrados en el "
+"sistema"
+
+#: .\principal\templates\subject_link\edit.html:10
+msgid "Link/unlink certification"
+msgstr "Vincular o desvincular titulaciones"
+
+#: .\principal\templates\subject_link\edit.html:11
+msgid "It lets you link or unlink the qualifications for a particular subject"
+msgstr ""
+"Permite vincular o desvincular usuarios de una asignatura en particular"
+
+#: .\principal\templates\subject_link\import_subject_link.html:9
+msgid "Allows to link the users to the subjects"
+msgstr "Permite vincular a un usuario con sus asignaturas"
+
+#: .\principal\templates\subject_link\import_subject_link.html:13
+msgid ""
+"Process was completed successfully, but have not been able to link the users:"
+msgstr ""
+"Proceso se completó con éxito, pero no se han podido vincular a los usuarios:"
+
+#: .\principal\templates\subject_link\import_subject_link.html:42
+msgid "Back"
+msgstr "Volver"
+
+#: .\principal\templates\tutorial\edit.html:11
+#: .\principal\templates\tutorial_request\calendar.html:69
+msgid "Request for an appointment"
+msgstr "Solicitar cita"
+
+#: .\principal\templates\tutorial_request\calendar.html:23
+msgid "What do colours mean?"
+msgstr "¿Qué significan los colores?"
+
+#: .\principal\templates\tutorial_request\calendar.html:35
+#: .\principal\templates\tutorial_request\list.html:87
+msgid "Legend"
+msgstr "Leyenda"
+
+#: .\principal\templates\tutorial_request\calendar.html:38
+msgid "This is the meaning of the color labels."
+msgstr ""
+"Este es el significado de las etiquetas que aparecen al lado de las "
+"solicitudes."
+
+#: .\principal\templates\tutorial_request\calendar.html:41
+msgid "Available (green)"
+msgstr "Disponible (verde)"
+
+#: .\principal\templates\tutorial_request\calendar.html:42
+msgid "Nobody requested an appointment here. This range is available"
+msgstr "Nadie ha solicitado cita en esta hora. Está disponible."
+
+#: .\principal\templates\tutorial_request\calendar.html:45
+msgid "Available (orange)"
+msgstr "Disponible (naranja)"
+
+#: .\principal\templates\tutorial_request\calendar.html:46
+msgid "Somebody requested an appointment at this hour, but you can do it too."
+msgstr "Alguien solicitó una cita a esta hora, pero puede hacerlo también."
+
+#: .\principal\templates\tutorial_request\calendar.html:49
+#: .\principal\views\TutorialRequestViews.py:185
+msgid "Busy"
+msgstr "Ocupado"
+
+#: .\principal\templates\tutorial_request\calendar.html:50
+msgid "Range busy, you cannot request a appointment here."
+msgstr "Rango ocupado, no puede solicitar una cita aquí."
+
+#: .\principal\templates\tutorial_request\calendar.html:56
+#: .\principal\templates\tutorial_request\list.html:106
+msgid "Understood"
+msgstr "Entendido"
+
+#: .\principal\templates\tutorial_request\calendar.html:70
+#: .\principal\templates\tutorial_request\calendar.html:90
+msgid "Assign tutorial"
+msgstr "Asignar tutoría"
+
+#: .\principal\templates\tutorial_request\calendar.html:89
+msgid "Send request"
+msgstr "Enviar petición"
+
+#: .\principal\templates\tutorial_request\calendar.html:102
+msgid "You must select a student to assign the tutorial."
+msgstr "Debe seleccionar un estudiante para asignar la tutoría."
+
+#: .\principal\templates\tutorial_request\calendar.html:143
+msgid "Cannot load events."
+msgstr "No se puede cargar eventos."
+
+#: .\principal\templates\tutorial_request\calendar.html:163
+msgid "No results match for"
+msgstr "No hay coincidencias para"
+
+#: .\principal\templates\tutorial_request\list.html:13
+msgid "Cancel tutorial requests"
+msgstr "Cancelar solicitudes"
+
+#: .\principal\templates\tutorial_request\list.html:25
+msgid "Rejection reason"
+msgstr "Motivo de rechazo:"
+
+#: .\principal\templates\tutorial_request\list.html:25
+msgid "Why?"
+msgstr "¿Por qué?"
+
+#: .\principal\templates\tutorial_request\list.html:32
+msgid "Click to view the profile of the applicant"
+msgstr "Haga clic para ver el perfil del solicitante"
+
+#: .\principal\templates\tutorial_request\list.html:32
+msgid "Click to view the profile of the lecturer"
+msgstr "Haga clic para ver el perfil del profesor"
+
+#: .\principal\templates\tutorial_request\list.html:50
+msgid ""
+"By accepting this request, all requests with the same schedule will be "
+"automatically canceled. Are you sure?"
+msgstr ""
+"Al aceptar esta solicitud, se cancelará automáticamente todas las "
+"solicitudes con el mismo horario. ¿Está seguro?"
+
+#: .\principal\templates\tutorial_request\list.html:50
+msgid "Accept"
+msgstr "Aceptar"
+
+#: .\principal\templates\tutorial_request\list.html:53
+msgid "Reject"
+msgstr "Rechazar"
+
+#: .\principal\templates\tutorial_request\list.html:66
+msgid "No pending requests found."
+msgstr "No hay peticiones pendientes"
+
+#: .\principal\templates\tutorial_request\list.html:68
+msgid "No accepted requests found."
+msgstr "No se han encontrado solicitudes."
+
+#: .\principal\templates\tutorial_request\list.html:90
+msgid "This is the meaning of the labels that appear next to requests."
+msgstr ""
+"Este es el significado de las etiquetas que aparecen al lado de las "
+"solicitudes."
+
+#: .\principal\templates\tutorial_request\list.html:93
+msgid "It means that the request is pending that the lecturer responds."
+msgstr "Significa que la solicitud está pendiente de que el profesor responda."
+
+#: .\principal\templates\tutorial_request\list.html:96
+msgid "It means that the request has been accepted by the teacher."
+msgstr "Esto significa que la solicitud ha sido aceptada por el profesor."
+
+#: .\principal\templates\tutorial_request\list.html:99
+msgid ""
+"This means that the request has been canceled by the system due to "
+"incompatibility of schedule."
+msgstr ""
+"Esto significa que la solicitud ha sido cancelada por el sistema debido a la "
+"incompatibilidad de horarios."
+
+#: .\principal\templates\tutorial_request\list.html:102
+msgid ""
+"This means that the request has been expressly rejected by the lecturer."
+msgstr ""
+"Esto significa que la solicitud ha sido rechazada expresamente por el "
+"profesor."
+
+#: .\principal\templates\tutorial_request\list.html:120
+msgid "Reject tutorial request"
+msgstr "Rechazar solicitud"
+
+#: .\principal\templates\tutorial_request\list.html:173
+msgid "Reject tutorial requests"
+msgstr "Rechazar solicitudes"
+
+#: .\principal\templates\tutorial_request\list.html:176
+msgid "Use control/command key to select multiple objects at once."
+msgstr ""
+"Mantenga pulsada la tecla Control (Command en Mac) para seleccionar o "
+"deseleccionar varios objetos."
+
+#: .\principal\templates\user\ajax_search.html:6
+#: .\principal\templates\user\list.html:62
+msgid "Students"
+msgstr "Alumnos"
+
+#: .\principal\templates\user\details.html:8
+msgid "User details"
+msgstr "Información del usuario"
+
+#: .\principal\templates\user\details.html:9
+msgid "It displays all the information of a user"
+msgstr "Muestra toda la información de un usuario"
+
+#: .\principal\templates\user\details.html:14
+msgid "User data"
+msgstr "Datos del usuario"
+
+#: .\principal\templates\user\details.html:24
+msgid "Username"
+msgstr "Nombre de usuario"
+
+#: .\principal\templates\user\details.html:29
+msgid "This action is irreversible. Are you sure you want to delete this user?"
+msgstr ""
+"Esta acción es irreversible. ¿Está seguro que desea eliminar este usuario?"
+
+#: .\principal\templates\user\details.html:62
+msgid "Subjects taught"
+msgstr "Asignaturas impartidas"
+
+#: .\principal\templates\user\edit.html:9
+msgid "Create user"
+msgstr "Crear usuario"
+
+#: .\principal\templates\user\edit.html:10
+msgid "It lets you create students and lecturers"
+msgstr "Le permite crear alumnos y profesores"
+
+#: .\principal\templates\user\edit.html:39
+msgid "Useraccount"
+msgstr "Cuenta de usuario"
+
+#: .\principal\templates\user\import_user.html:9
+msgid "Allows to import users to the system"
+msgstr "Permite importar usuarios al sistema"
+
+#: .\principal\templates\user\import_user.html:13
+msgid ""
+"Process was completed successfully, but the following users already exist:"
+msgstr ""
+"Se completó con éxito el proceso, pero ya existen los siguientes usuarios:"
+
+#: .\principal\templates\user\list.html:15
+msgid "Select user"
+msgstr "Seleccionar usuario"
+
+#: .\principal\templates\user\list.html:16
+msgid "It allows user to select a link with a subject"
+msgstr "Permite al usuario seleccionar un vinculo con una asignatura"
+
+#: .\principal\templates\user\list.html:19
+msgid "It shows a list of all users who are registered in the system"
+msgstr ""
+"Muestra una lista de todos los usuarios que están registrados en el sistema"
+
+#: .\principal\templates\user\list.html:39
+#: .\principal\templates\user\list.html:46
+msgid "Position"
+msgstr "Cargo"
+
+#: .\principal\templates\user\list.html:131
+msgid "Are you sure you want to link?"
+msgstr "¿Confirma que desea establecer el vínculo?"
+
+#: .\principal\templates\user\password_change.html:8
+msgid "Edit password"
+msgstr "Cambiar contraseña"
+
+#: .\principal\templates\user\password_change.html:9
+msgid ""
+"Please enter your old password, for security, and then enter the new "
+"password twice to verify that you have typed it correctly."
+msgstr ""
+"Por favor introduzca su antigua contraseña, seguridad y luego introduzca la "
+"nueva contraseña dos veces para verificar que usted ha tecleado "
+"correctamente."
+
+#: .\principal\templates\user\password_change.html:24
+msgid "Change my password"
+msgstr "Cambiar mi contraseña"
+
+#: .\principal\templatetags\extra-tags.py:22
+msgid "You have errors in your form. Please, fix them and retry."
+msgstr ""
+"Tiene errores en su formulario. Por favor, revíselo y vuelva a intentarlo."
+
+#: .\principal\validators.py:7
+msgid "It uses a format that matches the requested, "
+msgstr "Utilice un formato que coincida con el solicitado"
+
+#: .\principal\views\CertificationViews.py:18
+#: .\principal\views\CertificationViews.py:57
+#: .\principal\views\DepartmentViews.py:34
+#: .\principal\views\DepartmentViews.py:129
+#: .\principal\views\DepartmentViews.py:133
+#: .\principal\views\SubjectLinkViews.py:27
+#: .\principal\views\SubjectLinkViews.py:64
+#: .\principal\views\SubjectLinkViews.py:177
+#: .\principal\views\SubjectLinkViews.py:182
+#: .\principal\views\SubjectViews.py:73 .\principal\views\SubjectViews.py:165
+#: .\principal\views\SubjectViews.py:173 .\principal\views\UserViews.py:36
+#: .\principal\views\UserViews.py:175
+msgid "Action completed successfully"
+msgstr "Acción realizada correctamente"
+
+#: .\principal\views\DepartmentViews.py:29
+msgid "Action failed, try again!"
+msgstr "Acción fallida, vuelva a intentarlo."
+
+#: .\principal\views\DepartmentViews.py:139
+#: .\principal\views\SubjectLinkViews.py:188
+msgid "The file structure is wrong. It needs a label called:: "
+msgstr ""
+"La estructura de archivos es incorrecta. Se necesita una etiqueta llamada ::"
+
+#: .\principal\views\DepartmentViews.py:143
+#: .\principal\views\SubjectViews.py:183 .\principal\views\UserViews.py:190
+msgid "Please, check the attributes of the subjects"
+msgstr "Por favor, compruebe los atributos de las asignaturas"
+
+#: .\principal\views\DepartmentViews.py:147
+#: .\principal\views\SubjectLinkViews.py:196
+#: .\principal\views\SubjectViews.py:187 .\principal\views\UserViews.py:194
+msgid "Please, check the xml syntax and data values"
+msgstr "Por favor, compruebe los valores de datos y sintaxis de xml"
+
+#: .\principal\views\DepartmentViews.py:151
+#: .\principal\views\SubjectLinkViews.py:200
+#: .\principal\views\SubjectViews.py:191 .\principal\views\UserViews.py:198
+msgid "Please, check the file"
+msgstr "Por favor, compruebe el archivo"
+
+#: .\principal\views\NewViews.py:24
+msgid "Action completed successfully."
+msgstr "Acción realizada correctamente"
+
+#: .\principal\views\NewViews.py:38
+msgid "New was deleted successfully."
+msgstr "Noticia eliminada con éxito."
+
+#: .\principal\views\NewViews.py:40
+msgid "You cannot delete this new."
+msgstr "No se puede eliminar esta asignatura."
+
+#: .\principal\views\NewViews.py:49
+msgid "You cannot edit this new."
+msgstr "No puede eliminar esta noticia."
+
+#: .\principal\views\ProfileViews.py:34
+msgid "Remark was saved successfully."
+msgstr "Observación guardada correctamente."
+
+#: .\principal\views\ProfileViews.py:65
+msgid "Information has been saved successfully."
+msgstr "Información guardada correctamente."
+
+#: .\principal\views\ProfileViews.py:68
+msgid "Please, select the profile photo again."
+msgstr "Por favor, seleccione de nuevo la foto de perfil."
+
+#: .\principal\views\ProfileViews.py:102
+msgid "Information was updated successfully"
+msgstr "La información se actualizó con éxito"
+
+#: .\principal\views\SubjectLinkViews.py:79
+msgid "User linked to the subject"
+msgstr "Usuarios vinculados a la asignatura"
+
+#: .\principal\views\SubjectLinkViews.py:96
+msgid "Subject unlinked to the user"
+msgstr "Asignatura desvinculada del usuario"
+
+#: .\principal\views\SubjectLinkViews.py:105
+msgid "Subject unlinked to the certification"
+msgstr "Asignatura desvinculada de la titulación"
+
+#: .\principal\views\SubjectLinkViews.py:192
+msgid "Please, check the attributes of the users"
+msgstr "Por favor, compruebe los atributos de los usuarios"
+
+#: .\principal\views\SubjectViews.py:89
+msgid "The subject "
+msgstr "La asignatura"
+
+#: .\principal\views\SubjectViews.py:105
+msgid "The users have been removed"
+msgstr "Se han eliminado los usuarios"
+
+#: .\principal\views\SubjectViews.py:179 .\principal\views\UserViews.py:186
+msgid "The file structure is wrong. It needs a label called: "
+msgstr ""
+"La estructura de archivos es incorrecta. Se necesita una etiqueta llamada:"
+
+#: .\principal\views\TutorialRequestViews.py:28
+msgid "Request was rejected successfully."
+msgstr "Solicitud rechazada con éxito."
+
+#: .\principal\views\TutorialRequestViews.py:49
+msgid "Request was accepted successfully."
+msgstr "Solicitud aceptada con éxito."
+
+#: .\principal\views\TutorialRequestViews.py:51
+msgid ""
+"There is another accepted request for this date. The request was not "
+"accepted."
+msgstr ""
+"Hay otra solicitud aceptada para esta fecha. La petición no fue aceptada."
+
+#: .\principal\views\TutorialRequestViews.py:61
+msgid "Tutorials was cancelled successfully."
+msgstr "Tutorías canceladas con éxito"
+
+#: .\principal\views\TutorialRequestViews.py:74
+msgid "Accepted requests"
+msgstr "Solicitudes aceptadas"
+
+#: .\principal\views\TutorialRequestViews.py:106
+#: .\principal\views\TutorialViews.py:82
+msgid "The request has been sent successfully."
+msgstr "La petición ha sido enviada con éxito."
+
+#: .\principal\views\TutorialRequestViews.py:111
+#: .\principal\views\TutorialViews.py:86
+msgid ""
+"Sorry, but you cannot request more than two appointments for the same "
+"teacher in the same day."
+msgstr ""
+"Lo sentimos, pero no puede solicitar más de dos citas para el mismo profesor "
+"en el mismo día."
+
+#: .\principal\views\TutorialRequestViews.py:129
+msgid "Tutorial assigned successfully."
+msgstr "Tutoría asignada con éxito."
+
+#: .\principal\views\TutorialRequestViews.py:195
+#: .\principal\views\TutorialRequestViews.py:204
+msgid "Available"
+msgstr "Disponible"
+
+#: .\principal\views\TutorialRequestViews.py:247
+msgid "Tutorial request was accepted successfully."
+msgstr "Solicitud aceptada con éxito."
+
+#: .\principal\views\TutorialRequestViews.py:249
+msgid ""
+"You cannot accept this tutorial request due to a schedule incompatibility."
+msgstr ""
+"No puede aceptar esta tutoría debido a una incompatibilidad de horario."
+
+#: .\principal\views\TutorialViews.py:32
+msgid "Tutorial was updated successfully"
+msgstr "Tutoría actualizada correctamente"
+
+#: .\principal\views\TutorialViews.py:33
+msgid "Tutorial was added successfully."
+msgstr "Tutoría agregada con éxito."
+
+#: .\principal\views\TutorialViews.py:44
+msgid "You cannot edit this tutorial."
+msgstr "No puede editar esta tutoría."
+
+#: .\principal\views\TutorialViews.py:104
+msgid "The tutorial has been removed."
+msgstr "La tutoría ha sido eliminada."
+
+#: .\principal\views\TutorialViews.py:114
+msgid "Tutorials have been enabled."
+msgstr "Las tutorías se han activado."
+
+#: .\principal\views\TutorialViews.py:129
+msgid "Tutorials have been disabled."
+msgstr "Las tutorías se han desactivado."
+
+#: .\principal\views\TutorialViews.py:136
+msgid "You must enter a reason to disable tutorials."
+msgstr "Debe especificar una razón para desactivar las tutorías."
+
+#: .\principal\views\UserViews.py:82
+msgid "The user "
+msgstr "El usuario"
+
+#: .\principal\views\UserViews.py:84
+msgid "Could not delete the user"
+msgstr "No se pudo borrar el usuario"
+
+#: .\principal\views\UserViews.py:114
+msgid "Unable to display user details"
+msgstr "No se pudo mostrar los datos del usuario"
+
+#~ msgid "8 digits without letters"
+#~ msgstr "8 dígitos sin letras"
+
+#~ msgid "Your ID number (without letter)."
+#~ msgstr "Su DNI (sin letra)."
+
+#~ msgid "Import link users"
+#~ msgstr "Importar vinculaciones de usuarios y asignaturas"
+
+#~ msgid "DNI"
+#~ msgstr "DNI"

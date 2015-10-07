@@ -1,0 +1,17 @@
+{% extends 'layout/base.html' %}
+{% load i18n %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <h4>{% trans "Select a lecturer to see tutorials" %}</h4>
+            <ul class="list-unstyled">
+                {% for lecturer in lecturers %}
+                    <li><h6><a href="/lecturer/details/{{ lecturer.id }}">{{ lecturer.first_name }}</a></h6></li>
+                {% empty %}
+                    <li>{% trans "No lecturers found." %}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

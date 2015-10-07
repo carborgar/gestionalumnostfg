@@ -1,0 +1,39 @@
+{% extends 'layout/base.html' %}
+{% load i18n %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-justify">
+                <h2>{% trans "Cookies policy" %}</h2>
+
+                <p>{% trans "Our cookies policy is subject to periodic updates. Its purpose is to help you understand our use of cookies, the purpose of cookies used and options for the user to manage them." %}</p>
+
+                <p>{% trans "Users can access this information at any time via the link enabled on the web page." %}</p>
+
+                <h3>{% trans "What is a Cookie?" %}</h3>
+
+                <p>{% trans "A 'cookie' is a small text file that a website stores on browser user. Cookies make using and navigating a website and are essential for Internet operation, providing many advantages in service delivery interactive." %}</p>
+
+                <p>{% trans "Cookies are used, for example, to manage the user's session (reducing the number of times that you must insert your user data), improving the services offered, or to adapt the contents of a web page to your preferences." %}</p>
+
+                <p> {% trans "Cookies may be 'session', so it will be erased once the user leaves the page web that generated or 'persistent', which remain on your computer to a date determined." %}</p>
+
+                <p>{% trans "Cookies also can be 'proper', managed by the domain to which the user accesses and requesting a service or 'third party cookies', sent to the user equipment from a domain accessed differently." %}</p>
+
+                <h3><p>{% trans "Common cookies in this site" %}</h3>
+                <ul>
+                    <li>
+                        <p>{% trans "Session Cookie ('sessionid'): Used to uniquely identify each user accessing the application. This cookie is necessary to use these websites, so if the user decides to delete this cookie from your device, the web site may not function correctly." %}
+                    </li>
+                    <li>
+                        <p>{% trans "CSRF token cookie ('csrftoken'): It is used as a security measure to prevent various attacks." %}
+                    </li>
+                    <li>
+                        <p>{% trans "Acceptance cookie ('cp-enabled'): Used to remember if the user has already accepted the cookie policy of the site." %}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

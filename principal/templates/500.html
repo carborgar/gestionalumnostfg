@@ -1,0 +1,17 @@
+{% extends 'layout/base.html' %}
+{% load i18n %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="jumbotron mt20">
+                <h1>{% trans 'Server error' %}</h1>
+
+                <p>{% trans "Sorry, there's been an error. Thanks for your patience." %}</p>
+
+                <p><a href="/" class="btn btn-primary btn-lg">{% trans "Return to home page" %}</a></p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

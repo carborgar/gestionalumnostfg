@@ -1,0 +1,75 @@
+{% extends 'layout/base.html' %}
+{% load i18n %}
+{% load endless %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="row">
+                <div class=" col-md-8 col-lg-8">
+                    <h4>{% trans "Department list" %}</h4>
+
+                    <p>{% trans "It shows a list of all departments which are registered in the system" %}</p>
+                </div>
+                <div class="col-md-4  col-lg-4 text-right">
+                    <div style="margin-top: 15px">
+                        <div class="input-group col-md-12">
+                            {% csrf_token %}
+                            <input type="text" id="search" name="search" class="form-control input-lg"
+                                   placeholder={% trans "Search" %} />
+                            <span class="input-group-btn">
+                                <button class="btn btn-info btn-lg" type="button"><i
+                                        class="glyphicon glyphicon-search"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="search-results" class="col-lg-12">
+                <div class="col-md-7 col-lg-7">
+                    <div class="page-header">
+                        <h3><i class="fa fa-suitcase"></i> {% trans "Departments" %}</h3>
+                    </div>
+                    {% paginate departments %}
+                    {% for department in departments %}
+                        <h6><a href="/admin/department/details/{{ department.id }}">{{ department.nombre }}
+                            ({{ department.codigo }})</a></h6>
+                    {% empty %}
+                        {% trans "No departments found." %}
+                    {% endfor %}
+                    <div class="text-center">
+                        <nav class="diggy-pagination">
+                            {% show_pages %}
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="application/javascript">
+        $(function () {
+            $('#search').keyup(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/admin/department/search/",
+                    data: {
+                        'search_text': $('#search').val(),
+                        'csrfmiddlewaretoken': $("input[name = csrfmiddlewaretoken]").val()
+                    },
+                    success: searchSuccess,
+                    dataType: 'html'
+                });
+            });
+
+        });
+
+        function searchSuccess(data, textStatus, jqXHR) {
+            $('#search-results').html(data);
+        }
+    </script>
+
+{% endblock %}
+

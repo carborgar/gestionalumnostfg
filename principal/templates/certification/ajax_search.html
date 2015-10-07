@@ -1,0 +1,12 @@
+{% load i18n %}
+
+<div class="col-md-6 col-lg-6">
+    <div class="page-header">
+        <h3><i class="fa fa-graduation-cap"></i> {% trans "Certifications" %}</h3>
+    </div>
+    {% for certification in certifications %}
+        <h6><a href="/admin/certification/details/{{ certification.id }}">{{ certification.nombre }} ({{ certification.codigo }})</a></h6>
+    {% empty %}
+        {% trans "No certifications found." %}
+    {% endfor %}
+</div>

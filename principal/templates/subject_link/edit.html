@@ -1,0 +1,36 @@
+{% extends 'layout/base.html' %}
+{% load i18n %}
+{% load extra-tags %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h4>{% trans "Link/unlink certification" %}</h4>
+            <p>{% trans "It lets you link or unlink the qualifications for a particular subject" %}</p>
+            {% display_errors form %}
+
+            <form class="well" role="form" action="/admin/subject/link/{{ id }}" method="post" data-toggle="validator">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="id_certifications" class="control-label">{% trans "Certifications" %}:</label>
+                    {{ form.visible_fields.0 }}
+                    <div class="help-block with-errors"></div>
+                </div>
+
+                {% for hidden in form.hidden_fields %}{{ hidden }}{% endfor %}
+
+                <div class="form-group">
+                    <div>
+                        <button type="submit" class="btn btn-primary">{% trans "Save changes" %}</button>
+                        <span></span>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

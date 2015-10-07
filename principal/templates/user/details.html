@@ -1,0 +1,99 @@
+{% extends 'layout/base.html' %}
+{% load i18n %}
+{% load endless %}
+{% block content %}
+
+    <div class="row">
+
+        <h4>{% trans "User details" %}</h4>
+        <p>{% trans "It displays all the information of a user" %}</p>
+
+
+        <div class="col-xs-12 col-sm-6">
+            <div class="page-header">
+                <h3><i class="fa fa-user"></i> {% trans "User data" %}</h3>
+            </div>
+            <div>
+                <dl class="dl-horizontal custom-dl">
+                    <dt>{% trans "First name" %}:</dt>
+                    <dd>{{ user_details.first_name }}</dd>
+                    <dt>{% trans "Last name" %}:</dt>
+                    <dd>{{ user_details.last_name }}</dd>
+                    <dt>{% trans "ID number" %}:</dt>
+                    <dd>{{ user_details.dni }}</dd>
+                    <dt>{% trans "Username" %}:</dt>
+                    <dd>{{ user_details.username }}</dd>
+                </dl>
+            </div>
+
+            <a href="/admin/user/delete/{{ user_details.id }}" type="button" class="btn btn-danger" onclick="return confirm('{% trans "This action is irreversible. Are you sure you want to delete this user?" %}')"><i class="fa fa-trash-o"></i> {% trans "Delete" %}</a>
+
+        </div>
+
+        <div class="col-xs-12 col-sm-6">
+
+            {% if rol == 'alumno' %}
+                <div class="page-header">
+                    <h3><i class="fa fa-book"></i> {% trans "Subjects" %}</h3>
+                </div>
+                <div>
+
+                    {% paginate subjects %}
+                    <ul class="list-unstyled">
+                        {% for subject in subjects %}
+                            <li>
+                                <a href="/subject/details/{{ subject.id }}" data-toggle="tooltip" data-placement="bottom" title="{% trans "Subject details" %}">{{ subject.nombre }}</a>
+                                <a href="/admin/subject/unlink/user/{{ subject.id }}/{{ user_details.id }}" data-toggle="tooltip" data-placement="bottom" title="{% trans "Unlink subject" %}" class="unlink_subject"><i class="fa fa-chain-broken"></i></a>
+                            </li>
+                        {% empty %}
+                            <li>{% trans "No subjects found." %}</li>
+                        {% endfor %}
+                    </ul>
+                     <div class="text-center">
+                    <nav class="diggy-pagination">
+                        {% show_pages %}
+                    </nav>
+                </div>
+                </div>
+            {% endif %}
+
+            {% if rol == 'profesor' %}
+                <div class="page-header">
+                    <h3><i class="fa fa-book"></i> {% trans "Subjects taught" %}</h3>
+                </div>
+                <div>
+
+                    {% paginate impart_subjects %}
+                    <ul class="list-unstyled">
+                        {% for subject in impart_subjects %}
+                            <li>
+                                <a href="/subject/details/{{ subject.asignatura.id }}" data-toggle="tooltip" data-placement="bottom" title="{% trans "Subject details" %}">{{ subject.asignatura.nombre }} ({{ subject.cargo }})</a>
+                                <a href="/admin/subject/unlink/user/{{ subject.asignatura.id }}/{{ user_details.id }}" data-toggle="tooltip" data-placement="bottom" title="{% trans "Unlink subject" %}" class="unlink_subject"><i class="fa fa-chain-broken"></i></a>
+                            </li>
+                        {% empty %}
+                            <li>{% trans "No subjects found." %}</li>
+                        {% endfor %}
+                    </ul>
+                    <div class="text-center">
+                    <nav class="diggy-pagination">
+                        {% show_pages %}
+                    </nav>
+                </div>
+                </div>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <script type="application/javascript">
+        $('.unlink_subject').on('click', function () {
+            return confirm('{% trans "Are you sure you want to unlink subject?" %}');
+        });
+    </script>
+
+
+{% endblock %}
+
+
+

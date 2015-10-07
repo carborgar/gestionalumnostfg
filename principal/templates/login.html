@@ -1,0 +1,66 @@
+{% extends 'layout/base.html' %}
+{% load i18n %}
+{% load extra-tags %}
+
+{% block content %}
+    <div class="row login-card mb20">
+
+        <div class="col-xs-12 col-sm-6 col-sm-offset-3 mb20">
+            {% if form.errors %}
+                <div class="alert alert-danger">
+                    <h4>{% trans "Error" %}!</h4>
+                    <strong><p>{% trans "Your username and password didn't match. Please try again." %}</p></strong>
+                </div>
+            {% endif %}
+
+            {% if next and user.is_authenticated %}
+                <div class="alert alert-warning mt10 mb20">
+                    <h4>{% trans "Warning" %}!</h4>
+                    <strong><p>{% trans "Your account doesn't have access to this page. To proceed, please login with an account that has access." %}</p></strong>
+                </div>
+
+            {% endif %}
+
+            <div class="box">
+                <div class="box-icon">
+                    <span class="fa fa-4x fa fa-users"></span>
+                </div>
+                <div class="info">
+                    <h4 class="text-center">{% trans "Log in" %}</h4>
+
+                    <form class="form-horizontal" method="post" action="{% url 'django.contrib.auth.views.login' %}"
+                          data-toggle="validator" role="form">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="{{ form.username.id_for_label }}" class="col-lg-4 col-xs-12 control-label">{{ form.username.label }}</label>
+                            <div class="col-lg-8 col-xs-12">
+                                {{ form.username }}
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.password.id_for_label }}" class="col-lg-4 col-xs-12 control-label">{{ form.password.label }}</label>
+                            <div class="col-lg-8 col-xs-12">
+                                {{ form.password }}
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-lg-10 col-lg-offset-2">
+                                <button type="submit" class="btn btn-primary">{% trans "Login" %}</button>
+                            </div>
+                        </div>
+                        <input type="hidden" name="next" value="{{ next }}"/>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $("input:visible").prop('required',true);
+        $("input:visible").addClass('form-control');
+    </script>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% load i18n %}
+
+<div class="col-md-7 col-lg-7">
+    <div class="page-header">
+        <h3><i class="fa fa-book"></i> {% trans "Subjects" %}</h3>
+    </div>
+    {% for subject in subjects %}
+        <h6><a href="/subject/details/{{ subject.id }}">{{ subject.nombre }} ({{ subject.codigo }})</a></h6>
+    {% empty %}
+        {% trans "No subjects found." %}
+    {% endfor %}
+</div>

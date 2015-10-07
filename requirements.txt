@@ -1,0 +1,5 @@
+Django
+mysqlclient
+Pillow
+django-endless-pagination
+xmltodict

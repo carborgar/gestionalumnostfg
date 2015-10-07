@@ -1,0 +1,62 @@
+{% extends 'layout/base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% load extra-tags %}
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <h4>{% trans "Edit profile" %}</h4>
+
+            <form class="row" method="post" data-toggle="validator">
+                {% display_errors form %}
+                {% csrf_token %}
+                <div class="col-xs-12 col-sm-6">
+                    <div class="page-header">
+                        <h3><i class="fa fa-user"></i> {% trans "Personal data" %}</h3>
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.name.id_for_label }}" >{{ form.name.label }}</label>
+                        {{ form.name }}
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.surname.id_for_label }}">{{ form.surname.label }}</label>
+                        {{ form.surname }}
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.category.id_for_label }}">{{ form.category.label }}</label>
+                        {{ form.category }}
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <div class="page-header">
+                        <h3><i class="fa fa-phone"></i> {% trans "Contact data" %}</h3>
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.phone.id_for_label }}">{{ form.phone.label }}</label>
+                        {{ form.phone }}
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.office.id_for_label }}">{{ form.office.label }}</label>
+                        {{ form.office }}
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.web.id_for_label }}">{{ form.web.label }}</label>
+                        {{ form.web }}
+                        <div class="help-block with-errors"></div>
+                    </div>
+                     <div class="form-group">
+                        <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                        {{ form.email }}
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">{% trans "Save changes" %}</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

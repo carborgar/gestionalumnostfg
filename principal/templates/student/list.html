@@ -1,0 +1,60 @@
+{% extends 'layout/base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% load endless %}
+{% load extra-tags %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <h4>{% trans "Student list" %}</h4>
+
+            <p>{% trans "These are the students you teach the class" %}</p>
+
+            <div class="row mb20">
+                <div class="col-xs-12">
+                    {% display_errors form %}
+                    <form method="post" class="form-inline">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{ form.subject }}
+                            <button type="submit" class="btn btn-primary">{% trans "Apply filter" %}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row">
+                {% paginate students %}
+                {% for student in students %}
+                    <div class="col-md-4">
+                        <div class="well well-sm">
+                            <div class="flex">
+                                <a href="/profile/view/{{ student.id }}" class="thumbnail pull-left mr10 mb0" href="#">
+                                    <img class="media-object img-xs"
+                                         src="/{% firstof student.ficha.foto "static/student/default.jpg" %}">
+                                </a>
+
+                                <div class="media-body">
+                                    <h5 class="media-heading">{{ student }}</h5>
+
+                                    <p><a href="/profile/view/{{ student.id }}">{% trans "View profile" %}</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% if forloop.counter|divisibleby:3 %}
+                        <div class="clearfix"></div>
+                    {% endif %}
+                {% empty %}
+                    {% trans "No students found." %}
+                {% endfor %}
+                <div class="text-center">
+                    <nav class="diggy-pagination">
+                        {% show_pages %}
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

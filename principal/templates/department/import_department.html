@@ -1,0 +1,39 @@
+{% extends 'layout/base.html' %}
+{% load i18n %}
+{% load extra-tags %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <h4>{% trans "Import departments" %}</h4>
+            <p>{% trans "Allows to import departments to the system" %}</p>
+            {% if import_errors_create %}
+                <div class="alert alert-dismissible alert-warning" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <p><i class="fa fa-exclamation-triangle"></i> {% trans "Process was completed successfully, but the following departments already exist:" %}</p>
+                    <ul>
+                        {% for error in import_errors_create %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            {% display_errors form %}
+            <form action="/admin/department/import/" method="post" class="well" data-toggle="validator" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_file_upload" class="control-label">{% trans "File" %}:</label>
+                    {{ form.visible_fields.0 }}
+                    <div class="help-block with-errors"></div>
+                </div>
+                <div class="alert alert-info" role="alert">
+                    <i class="fa fa-info-circle"></i>
+                    {% trans "The supported files are XML and CSV" %}
+                </div>
+                <div class="mb20">
+                    <button type="submit" class="btn btn-primary">{% trans "Import" %}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

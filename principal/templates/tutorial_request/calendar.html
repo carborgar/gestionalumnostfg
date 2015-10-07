@@ -1,0 +1,170 @@
+{% extends 'layout/base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% load endless %}
+{% load extra-tags %}
+
+{% block extrahead %}
+    <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.2/fullcalendar.min.css" rel="stylesheet">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment-with-locales.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.2/fullcalendar.min.js"></script>
+    {% get_current_language as LANGUAGE_CODE %}
+    {% if LANGUAGE_CODE == 'es' %}
+        <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.2/lang/es.js"></script>
+    {% endif %}
+    <link href="{% static "css/bootstrap-chosen.css" %}" rel="stylesheet">
+    <script src="{% static "js/chosen.jquery.min.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <h4>{% trans "Seek tutorials" %}</h4>
+            <h5><a href="#" data-toggle="modal" data-target="#legendModal">{% trans "What do colours mean?" %}</a></h5>
+
+            <div id="calendar" class="mt20"></div>
+        </div>
+    </div>
+    <div class="modal fade" id="legendModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <i class="fa fa-times"></i>
+                    </button>
+                    <h4 class="modal-title">{% trans "Legend" %}</h4>
+                </div>
+                <div class="modal-body">
+                    <h5>{% trans "This is the meaning of the color labels." %}</h5>
+                    <dl>
+                        <dt>
+                        <h4><span class="label label-success">{% trans "Available (green)" %}</span></h4></dt>
+                        <dd>{% trans "Nobody requested an appointment here. This range is available" %}</dd>
+
+                        <dt>
+                        <h4><span class="label label-warning">{% trans "Available (orange)" %}</span></h4></dt>
+                        <dd>{% trans "Somebody requested an appointment at this hour, but you can do it too." %}</dd>
+
+                        <dt>
+                        <h4><span class="label label-danger">{% trans "Busy" %}</span></h4></dt>
+                        <dd>{% trans "Range busy, you cannot request a appointment here." %}</dd>
+
+                    </dl>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary"
+                            data-dismiss="modal">{% trans "Understood" %}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="requestModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i
+                            class="fa fa-times"></i></button>
+                    <h4 class="modal-title">{% if perms.principal.alumno %}
+                        {% trans "Request for an appointment" %}{% elif perms.principal.profesor %}
+                        {% trans "Assign tutorial" %}{% endif %}</h4>
+                </div>
+                <div class="modal-body">
+                    {% if perms.principal.alumno %}
+                        <p>{% trans "Lecturer" %}: {{ lecturer }}</p>
+                    {% endif %}
+                    <p>{% trans "Date" %}: <span id="tutorialHour"></span></p>
+
+                    <form method="post" id="requestForm" data-toggle="validator">
+                        {% csrf_token %}
+                        {{ form }}
+                        <input type="submit" value="{% trans "Submit" %}" class="hidden" id="submitButton">
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Cancel" %}</button>
+                    <button type="button" class="btn btn-primary"
+                            id="submitTrigger">
+                        {% if perms.principal.alumno %}{% trans "Send request" %}{% elif perms.principal.profesor %}
+                            {% trans "Assign tutorial" %}{% endif %}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $('#submitTrigger').click(function (e) {
+            {% if perms.principal.profesor %}
+                var student = $('#id_student').val();
+                if (!student) {
+                    e.preventDefault();
+                    alert("{% trans "You must select a student to assign the tutorial." %}")
+                } else {
+                    $('#submitButton').trigger('click');
+                }
+            {% else %}
+                $('#submitButton').trigger('click');
+            {% endif %}
+        });
+
+        $(function () {
+            {% if form.errors %}
+                $('#requestModal').modal();
+                $('#tutorialHour').text("{{ form.date.value|slice:"-3" }}");
+            {% endif %}
+
+
+            $('#calendar').fullCalendar({
+                lang: '{{ LANGUAGE_CODE }}',
+                header: {
+                    left: 'prev,today,next',
+                    center: 'title',
+                    right: 'agendaWeek,agendaDay'
+                },
+                axisFormat: 'HH',
+                timeFormat: 'HH:mm',
+                allDaySlot: false,
+                minTime: "08:00:00",
+                maxTime: "22:00:00",
+                slotDuration: "00:30:00",
+                contentHeight: 600,
+                eventOverlap: true,
+                defaultView: 'agendaWeek',
+                weekends: false, // will hide Saturdays and Sundays
+                eventSources: [
+                    {
+                        url: '/rest/tutorials',
+                        type: 'GET',
+                        data: {
+                            lecturer_id: '{{ lecturer.id }}',
+                        },
+                        error: function () {
+                            alert('{% trans "Cannot load events." %}');
+                        },
+                    }
+                ],
+                eventClick: function (event) {
+                    var color = event.backgroundColor;
+                    if ($.inArray(color, ["green", "orange"]) !== -1) {
+
+                        var text = event.start.locale("{{ LANGUAGE_CODE }}").format('YYYY-MM-DD HH:mm');
+                        $('#tutorialHour').text(text);
+                        $('#id_date').val(event.start.format("YYYY-MM-DD HH:mm:ss"));
+                        $('#requestModal').modal();
+                    }
+                }
+            })
+        });
+
+        {% if perms.principal.profesor %}
+            $('#requestModal').on('shown.bs.modal', function () {
+                $(".chosen-select").chosen(
+                        {no_results_text: "{% trans "No results match for" %}"}
+                );
+            });
+        {% endif %}
+    </script>
+
+
+{% endblock %}

@@ -1,0 +1,24 @@
+<table class="cal-row-fluid cal-row-head table table-bordered">
+    <thead>
+    <tr>
+        <% _.each(days_name, function(name){ %>
+        <th><%= name %></th>
+        <% }) %>
+    </tr>
+    </thead>
+
+    <tbody class="cal-month-box">
+    <% for(i = 0; i < 6; i++) { %>
+    <% if(cal.stop_cycling == true) break; %>
+    <tr class="calendar-row">
+        <%= cal._day(i, day++) %>
+        <%= cal._day(i, day++) %>
+        <%= cal._day(i, day++) %>
+        <%= cal._day(i, day++) %>
+        <%= cal._day(i, day++) %>
+        <% day+=2 %>
+    </tr>
+    <% } %>
+    </tbody>
+
+</table>

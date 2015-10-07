@@ -1,0 +1,44 @@
+{% load i18n %}
+{% load staticfiles %}
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"><i class="fa fa-graduation-cap"></i> {% trans "Students management" %}</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-menu">
+            <ul class="nav navbar-nav navbar-right">
+                {% if perms.principal.alumno %}
+                    {% include "layout/menu/alumno-menu.html" %}
+                {% elif perms.principal.profesor %}
+                    {% include "layout/menu/profesor-menu.html" %}
+                {% elif  perms.principal.administrator %}
+                    {% include "layout/menu/admin-menu.html" %}
+                {% else %}
+                    {% include "layout/menu/anonymous-menu.html" %}
+                {% endif %}
+                {% if user.is_authenticated %}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                            <i class="fa fa-user"></i> {% firstof user.first_name "Administrator" %}
+                            <span class="fa fa-chevron-down"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="/password_change"><i class="fa fa-key"></i> {% trans "Change password" %}</a>
+                                </li>
+                                <li>
+                                    <a href="/logout"><i class="fa fa-sign-out"></i> {% trans "Logout" %}</a>
+                                </li>
+                            </ul>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

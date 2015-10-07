@@ -1,0 +1,108 @@
+{% extends 'layout/base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% load extra-tags %}
+
+
+{% block extrahead %}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker3.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
+    {% get_current_language as LANGUAGE_CODE %}
+    {% if LANGUAGE_CODE == 'es' %}
+        <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/locales/bootstrap-datepicker.es.min.js"></script>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="modal fade" id="imagePreview" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i
+                            class="fa fa-times"></i></button>
+                    <h4 class="modal-title">{% trans "Current photo" %}</h4>
+                </div>
+                <div class="modal-body">
+                    <img class="img-responsive" src="/{{ student.ficha.foto }}" alt="{{ student.first_name }}"/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Close" %}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <h4>{% trans "Student data" %}</h4>
+
+            <form method="post" data-toggle="validator" enctype="multipart/form-data" class="well">
+                {% csrf_token %}
+                {{ formset.management_form }}
+                <fieldset>
+                    <legend>{% trans "Personal data" %}</legend>
+                    {% display_errors form %}
+
+                    {% for field in form.visible_fields %}
+                        <div class="form-group col-sm-6">
+                            <label for="{{ field.id_for_label }}">{{ field.label }}
+                                {% if forloop.counter == 1 %}
+                                    <a data-toggle="modal" href="#"
+                                       data-target="#imagePreview">{% trans "View current photo" %}</a>
+                                {% endif %}
+                            </label>
+                            {{ field }}
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        {% if forloop.counter|divisibleby:2 %}
+                            <div class="clearfix"></div>
+                        {% endif %}
+                    {% endfor %}
+
+                    <legend>{% trans "Residence address" %}</legend>
+                    {% display_errors formset.0 %}
+                    {% for field in formset.0.visible_fields %}
+                        <div class="form-group col-sm-4">
+                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            {{ field }}
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        {% if forloop.counter|divisibleby:3 %}
+                            <div class="clearfix"></div>
+                        {% endif %}
+                    {% endfor %}
+
+                    <legend>{% trans "Address while studying" %} </legend>
+                    {% display_errors formset.1 %}
+                    {% for field in formset.1.visible_fields %}
+                        <div class="form-group col-sm-4">
+                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            {{ field }}
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        {% if forloop.counter|divisibleby:3 %}
+                            <div class="clearfix"></div>
+                        {% endif %}
+                    {% endfor %}
+                </fieldset>
+                <div class="mb20">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-2">
+                            <button type="submit" class="btn btn-primary btn-block">{% trans "Submit" %}</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $('#id_birth_date').datepicker({
+            format: "yyyy-mm-dd",
+            endDate: "today",
+            startView: 2,
+            language: "es",
+            autoclose: true,
+            forceParse: false
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,135 @@
+{% extends 'layout/base.html' %}
+{% load i18n %}
+{% load endless %}
+{% load staticfiles %}
+{% load extra-tags %}
+
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="row">
+                <div class=" col-md-8 col-lg-8">
+                    {% if subject_id %}
+                        <h4>{% trans "Select user" %}</h4>
+                        <p>{% trans "It allows user to select a link with a subject" %}</p>
+                    {% else %}
+                        <h4>{% trans "User list" %}</h4>
+                        <p>{% trans "It shows a list of all users who are registered in the system" %}</p>
+                    {% endif %}
+                </div>
+                <div class="col-md-4  col-lg-4 text-right">
+                    <div style="margin-top: 15px">
+                        <div class="input-group col-md-12">
+                            {% csrf_token %}
+                            <input type="text" id="search" name="search" class="form-control input-lg" placeholder={% trans "Search" %} />
+                            <span class="input-group-btn">
+                                <button class="btn btn-info btn-lg" type="button"><i class="glyphicon glyphicon-search"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% if form %}
+                {% display_errors form %}
+                <form class="well" role="form" action="/admin/subject/link/user/{{ subject_id }}/{{ lecturer_id }}" method="post" data-toggle="validator">
+                    {% csrf_token %}
+                    <fieldset>
+                        <legend><i class="fa fa-user"></i> {% trans "Position" %}</legend>
+                        <div class="form-group col-sm-5">
+                            <label for="id_lecturer" class="control-label">{% trans "Lecturer" %}:</label>
+                            {{ form.visible_fields.1 }}
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group col-sm-5">
+                            <label for="id_position" class="control-label">{% trans "Position" %}:</label>
+                            {{ form.visible_fields.0 }}
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        {% for hidden in form.hidden_fields %}{{ hidden }}{% endfor %}
+                        <div class="form-group col-sm-2">
+                            <div style="margin-top: 20px">
+                                <button type="submit" class="btn btn-primary">{% trans "Save" %}</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            {% endif %}
+            <div id="search-results" class="col-lg-12">
+                <div class="col-md-6 col-lg-6">
+                    <div class="page-header">
+                        <h3><i class="fa fa-users"></i> {% trans "Students" %}</h3>
+                    </div>
+                    {% paginate students %}
+                    {% for user in students %}
+                        {% if subject_id %}
+                            <h6><a href="/admin/subject/link/user/{{ subject_id }}/{{ user.id }}" class="link_user">{{ user.last_name }}, {{ user.first_name }} ({{ user.username }})</a></h6>
+                        {% else %}
+                            <h6><a href="/admin/user/details/{{ user.id }}">{{ user.last_name }}, {{ user.first_name }} ({{ user.username }})</a></h6>
+                        {% endif %}
+                    {% empty %}
+                        {% trans "No students found." %}
+                    {% endfor %}
+                     <div class="text-center">
+                    <nav class="diggy-pagination">
+                        {% show_pages %}
+                    </nav>
+                </div>
+                </div>
+                <div class="col-md-6 col-lg-6">
+                    <div class="page-header">
+                        <h3><i class="fa fa-users"></i> {% trans "Lecturers" %}</h3>
+                    </div>
+                    {% paginate lecturers %}
+                    {% for user in lecturers %}
+                        {% if subject_id %}
+                            <h6><a href="/admin/subject/link/user/{{ subject_id }}/{{ user.id }}">{{ user.last_name }}, {{ user.first_name }} ({{ user.username }})</a></h6>
+                        {% else %}
+                            <h6><a href="/admin/user/details/{{ user.id }}">{{ user.last_name }}, {{ user.first_name }} ({{ user.username }})</a></h6>
+                        {% endif %}
+                    {% empty %}
+                        {% trans "No lecturers found." %}
+                    {% endfor %}
+                     <div class="text-center">
+                    <nav class="diggy-pagination">
+                        {% show_pages %}
+                    </nav>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="application/javascript">
+        $(function () {
+            $('#search').keyup(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/admin/user/search/",
+                    data: {
+                        'search_text': $('#search').val(),
+
+                        {% if subject_id %}
+                            'subject_id': {{ subject_id }},
+                        {% endif %}
+
+                        'csrfmiddlewaretoken': $("input[name = csrfmiddlewaretoken]").val()
+                    },
+                    success: searchSuccess,
+                    dataType: 'html'
+                });
+            });
+
+        });
+
+        function searchSuccess(data, textStatus, jqXHR) {
+            $('#search-results').html(data);
+        }
+
+        $('.link_user').on('click', function () {
+            return confirm('{% trans "Are you sure you want to link?" %}');
+        });
+    </script>
+
+{% endblock %}
